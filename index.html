@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Проект - Место. Спринт - JavaScrips - 1">
+  <meta name="keywords" content="адаптивный сайт, жак-ив кусто, красивые места">
+  <meta name="author" content="Матвеев Олег">
+  <title>Изучаем JavaScrips - проект Место...</title>
+  <link rel="stylesheet" href="pages/index.css">
+</head>
+
+<body class="body">
+  <div class="page">
+
+    <header class="header">
+      <img class="header__logo" src="images/logo/logo.svg" alt="Логотип">
+      <div class="header__line"></div>
+      <!-- стили блока header__line можно перениести или в секцию или в __logo 
+      но в макете он присутствует как отдельная линия, так что пока так. -->
+    </header>
+
+    <main class="content">
+
+      <section class="profile">
+        <img class="profile__avatar" src="images/avatar-jacue-iv-custo.jpg" alt="Фото профиля">
+        <div class="profile__info">
+          <div class="profile__edit">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <button class="profile__edit-btn"></button>
+          </div>
+          <p class="profile__description">Исследователь океана</p>
+        </div>
+        <button class="profile__add-btn"></button>
+      </section>
+
+      <section class="elements">
+        <div class="element">
+          <img class="element__image" src="images/element-karachaevsk.jpg" alt="Карачаевск">
+          <div class="element__description">
+            <div class="element__title">Карачаевск</div>
+            <button class="element__like-icon"></button>  
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="images/element-elbrus.jpg" alt="Эльбрус">
+          <div class="element__description">
+            <div class="element__title">Гора Эльбрус</div>
+            <button class="element__like-icon"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="images/element-dombai.jpg" alt="Домбай">
+          <div class="element__description">
+            <div class="element__title">Домбай</div>
+            <button class="element__like-icon"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="images/element-elbrus.jpg" alt="Эльбрус">
+          <div class="element__description">
+            <div class="element__title">Гора Эльбрус</div>
+            <button class="element__like-icon"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="images/element-dombai.jpg" alt="Домбай">
+          <div class="element__description">
+            <div class="element__title">Домбай</div>
+            <button class="element__like-icon"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="images/element-karachaevsk.jpg" alt="Карачаевск">
+          <div class="element__description">
+            <div class="element__title">Карачаево-Ч...</div>
+            <button class="element__like-icon"></button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+    
+    <section class="popup">
+      <div class="popup__container">
+        <img class="popup__close" src="images/close-Icon.svg" alt="Закрыть окно">
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <div class="popup__input-form">
+          <input type="text" placeholder="Жак-Ив Кусто" class="popup__input-text popup__input-text_name">
+          <input type="text" placeholder="Исследователь океана" class="popup__input-text popup__input-text_description">
+          <button class="popup__input-btn popup__input-btn_save">
+            Сохранить
+          </button>
+        </div>
+      </div>  
+    </section>
+
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2020. Матвеев Олег</p>
+    </footer>
+  </div>
+  <script src="./scripts/index.js" defer></script>
+</body>
+
+</html>
