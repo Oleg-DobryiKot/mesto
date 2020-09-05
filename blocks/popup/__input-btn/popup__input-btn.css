@@ -4,7 +4,7 @@
   height: 50px;
   width: 100%;
   color: #ffffff;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -13,6 +13,6 @@
 }
 
 .popup__input-btn:hover {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.6);
   cursor: pointer;
 }

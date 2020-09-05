@@ -16,9 +16,6 @@
 
     <header class="header">
       <img class="header__logo" src="images/logo/logo.svg" alt="Логотип">
-      <div class="header__line"></div>
-      <!-- стили блока header__line можно перениести или в секцию или в __logo 
-      но в макете он присутствует как отдельная линия, так что пока так. -->
     </header>
 
     <main class="content">
@@ -84,15 +81,17 @@
 
     <section class="popup">
       <div class="popup__container">
-        <img class="popup__close" src="images/close-Icon.svg" alt="Закрыть окно">
+        <button class="popup__close"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <div class="popup__input-form">
-          <input type="text" placeholder="Жак-Ив Кусто" class="popup__input-text popup__input-text_name">
-          <input type="text" placeholder="Исследователь океана" class="popup__input-text popup__input-text_description">
-          <button class="popup__input-btn popup__input-btn_save">
+        <form class="popup__input-form">
+          <input type="text" placeholder="Жак-Ив Кусто" name="inputName"
+            class="popup__input-text popup__input-text_name">
+          <input type="text" placeholder="Исследователь океана" name="inputDescription"
+            class="popup__input-text popup__input-text_description">
+          <button type="submit" class="popup__input-btn">
             Сохранить
           </button>
-        </div>
+        </form>
       </div>
     </section>
 
