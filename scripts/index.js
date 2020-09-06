@@ -6,8 +6,13 @@ const profileNewName = document.querySelector('.profile__title');
 const profileNewDescription = document.querySelector('.profile__description');
 const inputName = document.querySelector('.popup__input-text_name');
 const inputDescription = document.querySelector('.popup__input-text_description');
+const form = document.querySelector("form");
+
+console.log(profileNewName.textContent);
 
 const popupOpen = function () {
+  inputName.value = profileNewName.textContent;
+  inputDescription.value = profileNewDescription.textContent;
   popup.classList.add('popup_is-opened');
 }
 
@@ -23,16 +28,14 @@ const popupCloseOnOverspace = function (event) {
 
 function popupSaveNewData() {
   if (inputName.value !== '') {
+    event.preventDefault();
     profileNewName.textContent = inputName.value;
     profileNewDescription.textContent = inputDescription.value;
   }
   popupClose();
-  return;
 }
 
-var form = document.querySelector("form");
 form.addEventListener("submit", function (event) {
-  event.preventDefault();
   popupSaveNewData();
 });
 
