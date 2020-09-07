@@ -27,17 +27,15 @@ const popupCloseOnOverspace = function (event) {
 }
 
 function popupSaveNewData() {
+  event.preventDefault();
   if (inputName.value !== '') {
-    event.preventDefault();
     profileNewName.textContent = inputName.value;
     profileNewDescription.textContent = inputDescription.value;
   }
   popupClose();
 }
 
-form.addEventListener("submit", function (event) {
-  popupSaveNewData();
-});
+form.addEventListener("submit", popupSaveNewData);
 
 popupEditButton.addEventListener('click', popupOpen);
 popupCloseButton.addEventListener('click', popupClose);
