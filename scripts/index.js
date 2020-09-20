@@ -36,11 +36,13 @@ function prepareElement(elementModel) {
   if (elementModel.name) {
     element.querySelector('.element__title').textContent = elementModel.name;
   }
-  element.querySelector('.del').addEventListener('click', () => {
-    debugger;
-    element.remove();
+  element.querySelector('.element__like-icon').addEventListener('click', function (event) {
+    event.target.classList.toggle('element__like-icon_active');
   });
-
+  // element.querySelector('.element__trash-icon').addEventListener('click', () => {
+  //   debugger;
+  //   element.remove();
+  // });
   return element;
 }
 
@@ -54,13 +56,11 @@ function prependElement(elementModel) {
   elementsContainer.prepend(element);
 }
 
-// const forEach = (arr, cb) => Array.prototype.forEach.call(arr, cb);
-
 initialCards.forEach(appendElement);
 
-/*
 const popup = document.querySelector('.popup');
 const popupEditButton = document.querySelector('.profile__edit-btn');
+const popupAddButton = document.querySelector('.profile__add-btn');
 const popupCloseButton = document.querySelector('.popup__close');
 const popupSaveButton = document.querySelector('.popup__input-btn');
 const profileNewName = document.querySelector('.profile__title');
@@ -69,9 +69,16 @@ const inputName = document.querySelector('.popup__input-text_name');
 const inputDescription = document.querySelector('.popup__input-text_description');
 const form = document.querySelector("form");
 
-const popupOpen = function () {
-  inputName.value = profileNewName.textContent;
-  inputDescription.value = profileNewDescription.textContent;
+const popupOpen = function (event) {
+  if (event.target.classList.value === 'profile__edit-btn') {
+  //console.log(event.target.classList.value);
+    inputName.value = profileNewName.textContent;
+    inputDescription.value = profileNewDescription.textContent;
+  }
+  if (event.target.classList.value === 'profile__add-btn') {
+    inputName.value = 'test-text';
+    inputDescription.value = profileNewDescription.textContent;
+  }
   popup.classList.add('popup_is-opened');
 }
 
@@ -98,6 +105,5 @@ form.addEventListener("submit", popupSaveNewData);
 
 popupEditButton.addEventListener('click', popupOpen);
 popupCloseButton.addEventListener('click', popupClose);
-
+popupAddButton.addEventListener('click', popupOpen);
 popup.addEventListener('click', popupCloseOnOverspace);
-*/

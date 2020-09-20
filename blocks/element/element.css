@@ -2,6 +2,7 @@
 @import url("./__description/element__description.css");
 @import url("./__title/element__title.css");
 @import url("./__like-icon/element__like-icon.css");
+@import url("./__trash-icon/element__trash-icon.css");
 
 .element {
   display: flex;
@@ -9,8 +10,6 @@
   box-sizing: border-box;
   border-radius: 10px;
   overflow: hidden;
-  /* max-height: 361px; */
   max-width: 282px;
-  /* max-width: 100%; */
-  /* object-fit: cover; */
+  position: relative;
 }
