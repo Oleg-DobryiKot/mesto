@@ -1,4 +1,8 @@
 const popup = document.querySelector('.popup');
+const imgShowPopup = document.querySelector('.img-popup');
+const imgClosePopup = document.querySelector('.img-popup__close');
+const imgPictureLoad = document.querySelector('.img-popup__fullpic');
+const imgTitleLoad = document.querySelector('.img-popup__title');
 const popupEditButton = document.querySelector('.profile__edit-btn');
 const popupAddButton = document.querySelector('.profile__add-btn');
 const popupCloseButton = document.querySelector('.popup__close');
@@ -42,6 +46,7 @@ function prepareElement(elementModel) {
   const element = elemCardContainer.cloneNode(true);
   if (elementModel.link) {
     element.querySelector('.element__image').src = elementModel.link;
+    element.querySelector('.element__image').alt = elementModel.name;
   }
   if (elementModel.name) {
     element.querySelector('.element__title').textContent = elementModel.name;
@@ -68,6 +73,12 @@ elementsContainer.addEventListener('click', (event) => {
   if (event.target.classList.contains('element__trash-icon')) {
     const element = event.target.closest('.element');
     element.remove();
+  } else if (event.target.classList.contains('element__image')) {
+    //присваиваем картинку и показываем попап
+    //console.log(event.target);
+    imgPictureLoad.src = event.target.attributes.src.value;
+    imgTitleLoad.textContent = event.target.attributes.alt.value;
+    imgPopupOpen();
   }
 });
 
@@ -98,6 +109,14 @@ const popupCloseOnOverspace = function (event) {
   }
 }
 
+const imgPopupOpen = function (event) {
+  imgShowPopup.classList.add('img-popup_show');
+}
+
+const imgPopupClose = function (event) {
+  imgShowPopup.classList.remove('img-popup_show');
+}
+
 function popupSaveNewData() {
   event.preventDefault();
   if (inputName.value !== '') {
@@ -119,5 +138,6 @@ function popupSaveNewElement(elementModel) {
 
 popupEditButton.addEventListener('click', popupOpen);
 popupCloseButton.addEventListener('click', popupClose);
+imgClosePopup.addEventListener('click', imgPopupClose);
 popup.addEventListener('click', popupCloseOnOverspace);
 popupAddButton.addEventListener('click', popupOpen);
