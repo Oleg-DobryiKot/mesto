@@ -49,11 +49,9 @@
         <h3 class="popup__title">Редактировать профиль</h3>
         <form name="inputForm" class="popup__input-form">
           <input type="text" placeholder="Жак-Ив Кусто" name="input-name"
-            class="popup__input-text popup__input-text_name" minlength="2" maxlength="40" required>
-          <span class="popup__input-error" id="inputForm-error"></span>
+            class="popup__input-text popup__input-text_name">
           <input type="text" placeholder="Исследователь океана" name="input-description"
-            class="popup__input-text popup__input-text_description" minlength="2" maxlength="200" required>
-          <span class="popup__input-error" id="inputForm-error"></span>
+            class="popup__input-text popup__input-text_description">
           <button type="submit" class="popup__input-btn">
             Сохранить
           </button>
@@ -67,9 +65,9 @@
         <h3 class="card-popup__title">Новое место</h3>
         <form name="inputCard" class="card-popup__input-form">
           <input type="text" placeholder="Название" name="input-card_name"
-            class="card-popup__input-text card-popup__input-text_name" minlength="1" maxlength="30" required>
+            class="card-popup__input-text card-popup__input-text_name">
           <input type="url" placeholder="Сыылка на картинку" name="input-card_link"
-            class="card-popup__input-text card-popup__input-text_link" required>
+            class="card-popup__input-text card-popup__input-text_link">
           <button type="submit" class="card-popup__input-btn">
             Сохранить
           </button>
@@ -100,7 +98,6 @@
       </div>
     </div>
   </template>
-  <!-- <script src="./scripts/validate.js" defer></script> -->
   <script src="./scripts/cards.js" defer></script>
   <script src="./scripts/index.js" defer></script>
 </body>
