@@ -127,6 +127,8 @@ function popupSaveNewElement() {
 }
 
 popupEditButton.addEventListener('click', () => {
+  inputName.textContent = '';
+  inputDescription.textContent = '';
   popupOpen(profilePopup, 'popup_is-opened');
 });
 
@@ -143,6 +145,8 @@ profilePopup.addEventListener('click', handleEventPopupCloseOnOverspace(profileP
 cardPopup.addEventListener('click', handleEventPopupCloseOnOverspace(cardPopup, 'card-popup_is-opened'));
 
 cardAddButton.addEventListener('click', () => {
+  cardInputLink.textContent = '';
+  cardInputName.textContent = '';
   popupOpen(cardPopup, 'card-popup_is-opened');
 });
 
