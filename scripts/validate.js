@@ -44,7 +44,7 @@ const setEventListeners = (formElement, config) => {
   toggleButtonState(inputList, buttonElement, config.inactiveButtonClass);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
-      checkInputValidity(formElement, inputElement);
+      checkInputValidity(formElement, inputElement, config);
       toggleButtonState(inputList, buttonElement, config.inactiveButtonClass);
     });
   });
@@ -67,8 +67,8 @@ enableValidation({
   inputSelector: '.popup__input-text',
   submitButtonSelector: '.popup__input-btn',
   inactiveButtonClass: 'popup__input-btn_disabled',
-  inputErrorClass: 'popup__input-text_type_error',  
-  errorClass: 'popup__error_visible' 
+  inputErrorClass: 'popup__input-text_type_error',
+  errorClass: 'popup__error_visible'
 });
 
 enableValidation({
