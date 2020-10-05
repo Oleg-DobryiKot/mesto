@@ -1,14 +1,14 @@
 const showInputError = (formElement, inputElement, errorMessage, config) => {
-  const errorElement = formElement.querySelector(config.inputErrorClass);
+  const errorElement = formElement.querySelector(`${config.errorSelector}${inputElement.name}`); 
   inputElement.classList.add(config.inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(config.errorClass);
 };
 
 const hideInputError = (formElement, inputElement, config) => {
-  const errorElement = formElement.querySelector(config.inputErrorClass);
-  inputElement.classList.remove(config.errorClass);
-  errorElement.classList.remove(config.inputErrorClass);
+  const errorElement = formElement.querySelector(`${config.errorSelector}${inputElement.name}`);
+  inputElement.classList.remove(config.inputErrorClass);
+  errorElement.classList.remove(config.errorClass);
   errorElement.textContent = '';
 };
 
@@ -27,14 +27,14 @@ const hasInvalidInput = (inputList) => {
   })
 };
 
-const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
+const toggleButtonState = (inputList, buttonElement, toggleClass) => {
   // Если есть хотя бы один невалидный инпут
   if (hasInvalidInput(inputList)) {
     // сделай кнопку неактивной
-    buttonElement.classList.add(inactiveButtonClass);
+    buttonElement.classList.add(toggleClass);
   } else {
     // иначе сделай кнопку активной
-    buttonElement.classList.remove(inactiveButtonClass);
+    buttonElement.classList.remove(toggleClass);
   }
 };
 
@@ -42,10 +42,22 @@ const setEventListeners = (formElement, config) => {
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
   toggleButtonState(inputList, buttonElement, config.inactiveButtonClass);
+  if (buttonElement.classList.contains(config.inactiveButtonClass)) {
+    buttonElement.disabled = true;
+  }
+  else {
+    buttonElement.disabled = false;
+  }
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       checkInputValidity(formElement, inputElement, config);
       toggleButtonState(inputList, buttonElement, config.inactiveButtonClass);
+      if (buttonElement.classList.contains(config.inactiveButtonClass)) {
+        buttonElement.disabled = true;
+      }
+      else {
+        buttonElement.disabled = false;
+      }
     });
   });
 };
@@ -68,6 +80,7 @@ enableValidation({
   submitButtonSelector: '.popup__input-btn',
   inactiveButtonClass: 'popup__input-btn_disabled',
   inputErrorClass: 'popup__input-text_type_error',
+  errorSelector: '.popup__error',
   errorClass: 'popup__error_visible'
 });
 
@@ -77,5 +90,6 @@ enableValidation({
   submitButtonSelector: '.card-popup__input-btn',
   inactiveButtonClass: 'card-popup__input-btn_disabled',
   inputErrorClass: 'card-popup__input-text_type_error',
+  errorSelector: '.card-popup__error',
   errorClass: 'card-popup__error_visible'
 });

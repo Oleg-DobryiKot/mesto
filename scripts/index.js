@@ -28,7 +28,7 @@ const cardAddButton = document.querySelector('.profile__add-btn');
 const profileNewName = document.querySelector('.profile__title');
 const profileNewDescription = document.querySelector('.profile__description');
 
-const formElements = document.forms.inputCard;
+const formCards = document.forms.inputCard;
 const formProfile = document.forms.inputForm;
 // console.log(formElements);
 const elementsContainer = document.querySelector('.elements');
@@ -96,6 +96,14 @@ function handleEventPopupCloseOnOverspace(popup, openClass) {
   }
 }
 
+function handleEventPopupCloseByEscape(popup, openClass) {
+  return function (event) {
+    if (event.key === 'Escape') {
+      popupClose(popup, openClass);
+    }
+  }
+}
+
 const imgPopupOpen = function (event) {
   imgShowPopup.classList.add('img-popup_show');
 }
@@ -136,6 +144,9 @@ formProfile.addEventListener("submit", event => {
   event.preventDefault();
   popupSaveNewData();
 });
+
+profilePopup.addEventListener("keyup", handleEventPopupCloseByEscape(profilePopup, 'popup_is-opened'));
+cardPopup.addEventListener("keyup", handleEventPopupCloseByEscape(cardPopup, 'card-popup_is-opened'));
 
 popupCloseButton.addEventListener('click', () => {
   popupClose(profilePopup, 'popup_is-opened');

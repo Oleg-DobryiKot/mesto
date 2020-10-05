@@ -1,5 +1,5 @@
-.popup__input-btn_disabled {
-  background: #000000;
+.popup__input-btn_disabled:disabled {
+  background: #E5E5E5;
   border-radius: 2px;
   border: 1px solid #000000;
   box-sizing: border-box;
