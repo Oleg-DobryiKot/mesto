@@ -127,6 +127,8 @@ function popupSaveNewElement() {
 }
 
 popupEditButton.addEventListener('click', () => {
+  inputName.textContent = '';
+  inputDescription.textContent = '';
   popupOpen(profilePopup, 'popup_is-opened');
 });
 
