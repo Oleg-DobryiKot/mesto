@@ -22,3 +22,13 @@
   opacity: 0.7;
   color: #000000;
 }
+
+/* .card-popup__input-text:invalid {
+  border-bottom: 1px solid FF0000;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.card-popup__input-text:valid {
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+} */

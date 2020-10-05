@@ -4,6 +4,7 @@
 @import url("./__input-form/card-popup__input-form.css");
 @import url("./__input-text/card-popup__input-text.css");
 @import url("./__input-btn/card-popup__input-btn.css");
+@import url("./__error/card-popup__error.css");
 
 .card-popup {
   position: fixed;

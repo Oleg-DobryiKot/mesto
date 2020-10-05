@@ -1,0 +1,21 @@
+.card-popup__input-btn_disabled {
+  background: #000000;
+  border-radius: 2px;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  opacity: 0.2;
+  height: 50px;
+  width: 100%;
+  color: #000000;
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+}
+
+.card-popup__input-btn:hover {
+  /* background: rgba(0, 0, 0, 0.6); */
+  cursor: pointer;
+}

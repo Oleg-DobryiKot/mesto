@@ -145,8 +145,8 @@ profilePopup.addEventListener('click', handleEventPopupCloseOnOverspace(profileP
 cardPopup.addEventListener('click', handleEventPopupCloseOnOverspace(cardPopup, 'card-popup_is-opened'));
 
 cardAddButton.addEventListener('click', () => {
-  cardInputLink.textContent = "";
-  cardInputName.textContent = "";
+  cardInputName.textContent = '';
+  cardInputLink.textContent = '';
   popupOpen(cardPopup, 'card-popup_is-opened');
 });
 
