@@ -16,8 +16,8 @@ const cardInputLink = document.querySelector('.card-popup__input-text_link');
 //console.log(cardPopup);
 
 // попап всплывающей картинки -- определения 
-const imgShowPopup = document.querySelector('.img-popup');
-const imgClosePopup = document.querySelector('.img-popup__close');
+const imgPopup = document.querySelector('.img-popup');
+const imgPopupCloseBtn = document.querySelector('.img-popup__close')
 const imgPictureLoad = document.querySelector('.img-popup__fullpic');
 const imgTitleLoad = document.querySelector('.img-popup__title');
 
@@ -72,36 +72,24 @@ elementsContainer.addEventListener('click', (event) => {
     //console.log(event.target);
     imgPictureLoad.src = event.target.attributes.src.value;
     imgTitleLoad.textContent = event.target.attributes.alt.value;
-    imgPopupOpen();
+    popupOpen(imgPopup);
   }
 });
 
-function popupOpen(popup, openClass) {
-  if (openClass) {
-    popup.classList.add(openClass);
-  }
+function popupOpen(popup) {
+    popup.classList.add('popup_is-opened');
 }
 
-function popupClose(popup, openClass) {
-  if (openClass) {
-    popup.classList.remove(openClass);
-  }
+function popupClose(popup) {
+    popup.classList.remove('popup_is-opened');
 }
 
-function handleEventPopupCloseOnOverspace(popup, openClass) {
+function handleEventPopupCloseOnOverspace(popup) {
   return function (event) {
     if (event.target === event.currentTarget) {
-      popupClose(popup, openClass);
+      popupClose(popup);
     }
   }
-}
-
-const imgPopupOpen = function (event) {
-  imgShowPopup.classList.add('img-popup_show');
-}
-
-const imgPopupClose = function (event) {
-  imgShowPopup.classList.remove('img-popup_show');
 }
 
 function popupSaveNewData() {
@@ -110,7 +98,7 @@ function popupSaveNewData() {
     profileNewName.textContent = inputName.value;
     profileNewDescription.textContent = inputDescription.value;
   }
-  popupClose(profilePopup, 'popup_is-opened');
+  popupClose(profilePopup);
 }
 
 function popupSaveNewElement() {
@@ -123,13 +111,13 @@ function popupSaveNewElement() {
     elementModel.link = cardInputLink.value;
     prependCard(elementModel);
   }
-  popupClose(cardPopup, 'card-popup_is-opened');
+  popupClose(cardPopup);
 }
 
 popupEditButton.addEventListener('click', () => {
-  inputName.textContent = '';
-  inputDescription.textContent = '';
-  popupOpen(profilePopup, 'popup_is-opened');
+  inputName.value = '';
+  inputDescription.value = '';
+  popupOpen(profilePopup);
 });
 
 formProfile.addEventListener("submit", event => {
@@ -138,20 +126,20 @@ formProfile.addEventListener("submit", event => {
 });
 
 popupCloseButton.addEventListener('click', () => {
-  popupClose(profilePopup, 'popup_is-opened');
+  popupClose(profilePopup);
 });
 
-profilePopup.addEventListener('click', handleEventPopupCloseOnOverspace(profilePopup, 'popup_is-opened'));
-cardPopup.addEventListener('click', handleEventPopupCloseOnOverspace(cardPopup, 'card-popup_is-opened'));
+profilePopup.addEventListener('click', handleEventPopupCloseOnOverspace(profilePopup));
+cardPopup.addEventListener('click', handleEventPopupCloseOnOverspace(cardPopup));
 
 cardAddButton.addEventListener('click', () => {
-  cardInputLink.textContent = "";
-  cardInputName.textContent = "";
-  popupOpen(cardPopup, 'card-popup_is-opened');
+  cardInputLink.value = '';
+  cardInputName.value = '';
+  popupOpen(cardPopup);
 });
 
 cardPopupCloseButton.addEventListener('click', () => {
-  popupClose(cardPopup, 'card-popup_is-opened');
+  popupClose(cardPopup);
 });
 
 cardPopup.addEventListener('submit', event => {
@@ -159,4 +147,6 @@ cardPopup.addEventListener('submit', event => {
   popupSaveNewElement();
 });
 
-imgClosePopup.addEventListener('click', imgPopupClose);
+imgPopupCloseBtn.addEventListener('click', () => {
+  popupClose(imgPopup)
+});

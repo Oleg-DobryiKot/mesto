@@ -9,8 +9,13 @@
   height: 100vh;
   top: 0;
   left: 0;
-  display: none;
+  display: flex;
+  visibility: hidden;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, .5);
+  opacity: 0;
+  z-index: 99999;
+  transition: opacity 1s 1s;
+
 }
