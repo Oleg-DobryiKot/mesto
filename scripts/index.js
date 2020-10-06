@@ -16,8 +16,8 @@ const cardInputLink = document.querySelector('.card-popup__input-text_link');
 //console.log(cardPopup);
 
 // попап всплывающей картинки -- определения 
-const imgShowPopup = document.querySelector('.img-popup');
-const imgClosePopup = document.querySelector('.img-popup__close');
+const imgPopup = document.querySelector('.img-popup');
+const imgPopupCloseBtn = document.querySelector('.img-popup__close');
 const imgPictureLoad = document.querySelector('.img-popup__fullpic');
 const imgTitleLoad = document.querySelector('.img-popup__title');
 
@@ -72,46 +72,34 @@ elementsContainer.addEventListener('click', (event) => {
     //console.log(event.target);
     imgPictureLoad.src = event.target.attributes.src.value;
     imgTitleLoad.textContent = event.target.attributes.alt.value;
-    imgPopupOpen();
+    popupOpen(imgPopup);
   }
 });
 
-function popupOpen(popup, openClass) {
-  if (openClass) {
-    popup.classList.add(openClass);
-    popup.addEventListener('keydown', handleEventPopupCloseByEscape(popup, openClass));
-  }
+function popupOpen(popup) {
+  popup.classList.add('popup_is-opened');
+  popup.addEventListener('keydown', handleEventPopupCloseByEscape(popup));
 }
 
-function popupClose(popup, openClass) {
-  if (openClass) {
-    popup.classList.remove(openClass);
-    popup.removeEventListener('keydown', handleEventPopupCloseByEscape(popup, openClass));
-  }
+function popupClose(popup) {
+  popup.classList.remove('popup_is-opened');
+  popup.removeEventListener('keydown', handleEventPopupCloseByEscape(popup));
 }
 
-function handleEventPopupCloseOnOverspace(popup, openClass) {
+function handleEventPopupCloseOnOverspace(popup) {
   return function (event) {
     if (event.target === event.currentTarget) {
-      popupClose(popup, openClass);
+      popupClose(popup);
     }
   }
 }
 
-function handleEventPopupCloseByEscape(popup, openClass) {
+function handleEventPopupCloseByEscape(popup) {
   return function (event) {
     if (event.key == 'Escape') {
-      popupClose(popup, openClass);
+      popupClose(popup);
     }
   }
-}
-
-const imgPopupOpen = function (event) {
-  imgShowPopup.classList.add('img-popup_show');
-}
-
-const imgPopupClose = function (event) {
-  imgShowPopup.classList.remove('img-popup_show');
 }
 
 function popupSaveNewData() {
@@ -120,7 +108,7 @@ function popupSaveNewData() {
     profileNewName.textContent = inputName.value;
     profileNewDescription.textContent = inputDescription.value;
   }
-  popupClose(profilePopup, 'popup_is-opened');
+  popupClose(profilePopup);
 }
 
 function popupSaveNewElement() {
@@ -133,11 +121,13 @@ function popupSaveNewElement() {
     elementModel.link = cardInputLink.value;
     prependCard(elementModel);
   }
-  popupClose(cardPopup, 'card-popup_is-opened');
+  popupClose(cardPopup);
 }
 
 popupEditButton.addEventListener('click', () => {
-  popupOpen(profilePopup, 'popup_is-opened');
+  inputName.value = '';
+  inputDescription.value = '';
+  popupOpen(profilePopup);
 });
 
 formProfile.addEventListener("submit", event => {
@@ -153,18 +143,20 @@ formProfile.addEventListener("keydown", event => {
 });
 
 popupCloseButton.addEventListener('click', () => {
-  popupClose(profilePopup, 'popup_is-opened');
+  popupClose(profilePopup);
 });
 
 profilePopup.addEventListener('click', handleEventPopupCloseOnOverspace(profilePopup, 'popup_is-opened'));
 cardPopup.addEventListener('click', handleEventPopupCloseOnOverspace(cardPopup, 'card-popup_is-opened'));
 
 cardAddButton.addEventListener('click', () => {
-  popupOpen(cardPopup, 'card-popup_is-opened');
+  cardInputLink.value = '';
+  cardInputName.value = '';
+  popupOpen(cardPopup);
 });
 
 cardPopupCloseButton.addEventListener('click', () => {
-  popupClose(cardPopup, 'card-popup_is-opened');
+  popupClose(cardPopup);
 });
 
 cardPopup.addEventListener('submit', event => {
@@ -172,11 +164,14 @@ cardPopup.addEventListener('submit', event => {
   popupSaveNewElement();
 });
 
-formCards.addEventListener('keydown', event => { 
+formCards.addEventListener('keydown', event => {
   if (event.key == 'Enter') {
     event.preventDefault();
     popupSaveNewElement();
   }
 });
 
-imgClosePopup.addEventListener('click', imgPopupClose);
+imgPopupCloseBtn.addEventListener('click', () => {
+  popupClose(imgPopup);
+});
+
