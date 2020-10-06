@@ -79,14 +79,14 @@ elementsContainer.addEventListener('click', (event) => {
 function popupOpen(popup, openClass) {
   if (openClass) {
     popup.classList.add(openClass);
-    popup.addEventListener("keyup", handleEventPopupCloseByEscape(popup, openClass));
+    popup.addEventListener('keydown', handleEventPopupCloseByEscape(popup, openClass));
   }
 }
 
 function popupClose(popup, openClass) {
   if (openClass) {
     popup.classList.remove(openClass);
-    popup.removeEventListener("keyup", handleEventPopupCloseByEscape(popup, openClass));
+    popup.removeEventListener('keydown', handleEventPopupCloseByEscape(popup, openClass));
   }
 }
 
@@ -137,8 +137,6 @@ function popupSaveNewElement() {
 }
 
 popupEditButton.addEventListener('click', () => {
-  inputName.textContent = '';
-  inputDescription.textContent = '';
   popupOpen(profilePopup, 'popup_is-opened');
 });
 
@@ -162,8 +160,6 @@ profilePopup.addEventListener('click', handleEventPopupCloseOnOverspace(profileP
 cardPopup.addEventListener('click', handleEventPopupCloseOnOverspace(cardPopup, 'card-popup_is-opened'));
 
 cardAddButton.addEventListener('click', () => {
-  cardInputName.textContent = '';
-  cardInputLink.textContent = '';
   popupOpen(cardPopup, 'card-popup_is-opened');
 });
 
@@ -176,7 +172,7 @@ cardPopup.addEventListener('submit', event => {
   popupSaveNewElement();
 });
 
-cardPopup.addEventListener('keydown', event => { 
+formCards.addEventListener('keydown', event => { 
   if (event.key == 'Enter') {
     event.preventDefault();
     popupSaveNewElement();
