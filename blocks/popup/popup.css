@@ -9,20 +9,33 @@
 .popup {
   display: flex; 
   visibility: hidden;
-  height: 0;
+  height: 100%;
   width: 100%;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  /* display: none; */
+  position: absolute;
+  /* top: 0;
+  left: 0; */
+  right: 0;
+  bottom: 0;
   background-color: rgba(0, 0, 0, .5);
-  width: 100%;
-  z-index: 9999;
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: -5;
   opacity: 0;
-  transition-property: opacity, height;
-  transition-duration: 1.5s, 0s;
-  transition-delay: 0s, 1s;
-  /*transition-timing-function: ease-in-out; */
+  transition: visibility 1s, opacity 1s ease;
+}
+
+.popup::before {
+  content: '';
+  display: block;
+  visibility: hidden;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  /* z-index: -5;
+  top: 0;
+  left: 0; */
+  right: 0;
+  bottom: 0;
 }
