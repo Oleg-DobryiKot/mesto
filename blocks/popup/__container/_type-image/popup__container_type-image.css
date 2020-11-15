@@ -1,6 +1,7 @@
-.img-popup__container {
-  width: 75vw;
-  height: 75vh;
+.popup__container_type-image {
+  max-width: 75vw;
+  max-height: 75vh;
+  height: 100%;
   margin: 0;
   padding: 0;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
