@@ -5,6 +5,7 @@
 @import url("./__input-text/popup__input-text.css");
 @import url("./__input-btn/popup__input-btn.css");
 @import url("./__fullpic/popup__fullpic.css");
+@import url("./__error/popup__error.css");
 
 .popup {
   display: flex; 

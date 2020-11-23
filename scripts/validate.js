@@ -27,37 +27,29 @@ const hasInvalidInput = (inputList) => {
   })
 };
 
-const toggleButtonState = (inputList, buttonElement, toggleClass) => {
-  // Если есть хотя бы один невалидный инпут
-  if (hasInvalidInput(inputList)) {
-    // сделай кнопку неактивной
-    buttonElement.classList.add(toggleClass);
-  } else {
-    // иначе сделай кнопку активной
-    buttonElement.classList.remove(toggleClass);
-  }
+const toggleButtonState = (inputList, buttonElement) => {
+  buttonElement.disabled = hasInvalidInput(inputList);
+    // Если есть хотя бы один невалидный инпут
+  // if (hasInvalidInput(inputList)) {
+  //   // сделай кнопку неактивной
+  //   // buttonElement.classList.add(toggleClass);
+  //   buttonElement.disabled = true;
+  // } else {
+  //   // иначе сделай кнопку активной
+  //   // buttonElement.classList.remove(toggleClass);
+  //   buttonElement.disabled = false;
+  // }
 };
 
 const setEventListeners = (formElement, config) => {
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
-  toggleButtonState(inputList, buttonElement, config.inactiveButtonClass);
-  if (buttonElement.classList.contains(config.inactiveButtonClass)) {
-    buttonElement.disabled = true;
-  }
-  else {
-    buttonElement.disabled = false;
-  }
+  toggleButtonState(inputList, buttonElement);
+
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       checkInputValidity(formElement, inputElement, config);
-      toggleButtonState(inputList, buttonElement, config.inactiveButtonClass);
-      if (buttonElement.classList.contains(config.inactiveButtonClass)) {
-        buttonElement.disabled = true;
-      }
-      else {
-        buttonElement.disabled = false;
-      }
+      toggleButtonState(inputList, buttonElement);
     });
   });
 };
@@ -78,7 +70,7 @@ enableValidation({
   formSelector: '.popup__input-form_type-profile',
   inputSelector: '.popup__input-text',
   submitButtonSelector: '.popup__input-btn_type-profile',
-  inactiveButtonClass: 'popup__input-btn_disabled',
+  // inactiveButtonClass: 'popup__input-btn_disabled',
   inputErrorClass: 'popup__input-text_type_error',
   errorSelector: '.popup__error',
   errorClass: 'popup__error_visible'
@@ -87,8 +79,8 @@ enableValidation({
 enableValidation({
   formSelector: '.popup__input-form_type-card',
   inputSelector: '.popup__input-text',
-  submitButtonSelector: 'popup__input-btn_type-card',
-  inactiveButtonClass: 'popup__input-btn_disabled',
+  submitButtonSelector: '.popup__input-btn_type-card',
+  // inactiveButtonClass: 'popup__input-btn_disabled',
   inputErrorClass: 'popup__input-text_type_error',
   errorSelector: '.popup__error',
   errorClass: 'popup__error_visible'
