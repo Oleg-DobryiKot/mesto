@@ -29,16 +29,6 @@ const hasInvalidInput = (inputList) => {
 
 const toggleButtonState = (inputList, buttonElement) => {
   buttonElement.disabled = hasInvalidInput(inputList);
-    // Если есть хотя бы один невалидный инпут
-  // if (hasInvalidInput(inputList)) {
-  //   // сделай кнопку неактивной
-  //   // buttonElement.classList.add(toggleClass);
-  //   buttonElement.disabled = true;
-  // } else {
-  //   // иначе сделай кнопку активной
-  //   // buttonElement.classList.remove(toggleClass);
-  //   buttonElement.disabled = false;
-  // }
 };
 
 const setEventListeners = (formElement, config) => {
