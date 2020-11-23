@@ -20,17 +20,13 @@
 @import url("../blocks/popup/__input-btn/_disabled/popup__input-btn_disabled.css");
 @import url("../blocks/popup/__input-text/_type_error/popup__input-text_type_error.css");
 /* попап карточки */
-@import url("../blocks/card-popup/card-popup.css");
-/* @import url("../blocks/card-popup/_is-opened/card-popup_is-opened.css"); */
-@import url("../blocks/card-popup/__input-text/_link/card-popup__input-text_link.css");
-@import url("../blocks/card-popup/__input-text/_name/card-popup__input-text_name.css");
-@import url("../blocks/card-popup/__error/_visible/card-popup__error_visible.css");
-@import url("../blocks/card-popup/__error/_name/card-popup__error_name.css");
-@import url("../blocks/card-popup/__error/_link/card-popup__error_link.css");
-@import url("../blocks/card-popup/__input-btn/_disabled/card-popup__input-btn_disabled.css");
-@import url("../blocks/card-popup/__input-text/_type_error/card-popup__input-text_type_error.css");
+@import url("../blocks/popup/_type-card/popup_type-card.css");
+@import url("../blocks/popup/__input-text/_link/popup__input-text_link.css");
+@import url("../blocks/popup/__input-text/_title/popup__input-text_title.css");
 /* попап развернутой картинки */
-@import url("../blocks/img-popup/img-popup.css");
-/* @import url("../blocks/img-popup/_show/img-popup_show.css"); */
-
+@import url("../blocks/popup/_type-image/popup_type-image.css");
+@import url("../blocks/popup/__container/_type-image/popup__container_type-image.css");
+@import url("../blocks/popup/__close/_type-image/popup__close_type-image.css");
+@import url("../blocks/popup/__title/_type-image/popup__title_type-image.css");
+/* скрытие попапов */
 @import url("../blocks/popup/_is-opened/popup_is-opened.css");

@@ -43,47 +43,43 @@
 
     </main>
 
-    <section class="popup">
+    <section class="popup popup_type-profile">
       <div class="popup__container">
-        <button type="button" class="popup__close"></button>
+        <button type="button" class="popup__close popup__close_type-profile"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form name="inputForm" class="popup__input-form" novalidate>
-          <input type="text" placeholder="Жак-Ив Кусто" name="_name" 
-            class="popup__input-text popup__input-text_name" minlength="2" maxlength="40" required>
-          <span class="popup__error popup__error_name" id="input_form_name_error">Введите имя</span>
-          <input type="text" placeholder="Исследователь океана" name="_description" 
-            class="popup__input-text popup__input-text_description" minlength="2" maxlength="200" required>
-          <span class="popup__error popup__error_description" id="input_form_desciption_error">Введите род занятий</span>
-          <button type="submit" class="popup__input-btn">
+        <form name="inputFormProfile" class="popup__input-form popup__input-form_type-profile">
+          <input type="text" placeholder="Жак-Ив Кусто" name="input-name"
+            class="popup__input-text popup__input-text_name">
+          <input type="text" placeholder="Исследователь океана" name="input-description"
+            class="popup__input-text popup__input-text_description">
+          <button type="submit" class="popup__input-btn popup__input-btn_type-profile">
             Сохранить
           </button>
         </form>
       </div>
     </section>
 
-    <section class="card-popup">
-      <div class="card-popup__container">
-        <button type="button" class="card-popup__close"></button>
-        <h3 class="card-popup__title">Новое место</h3>
-        <form name="inputCard" class="card-popup__input-form" novalidate>
-          <input type="text" placeholder="Название" name="_name" 
-            class="card-popup__input-text card-popup__input-text_name" minlength="1" maxlength="30" required>
-          <span class="card-popup__error card-popup__error_name" id="card_form_name_error">Заполните это поле</span>
-          <input type="url" placeholder="Ссылка на картинку" name="_link" 
-            class="card-popup__input-text card-popup__input-text_link" required>
-          <span class="card-popup__error card-popup__error_link" id="card_form_link_error">Введите URL картинки</span>
-          <button type="submit" class="card-popup__input-btn">
+    <section class="popup popup_type-card">
+      <div class="popup__container">
+        <button type="button" class="popup__close popup__close_type-card"></button>
+        <h3 class="popup__title">Новое место</h3>
+        <form name="inputFormCard" class="popup__input-form popup__input-form_type-card">
+          <input type="text" placeholder="Название" name="input-card_title"
+            class="popup__input-text popup__input-text_title">
+          <input type="text" placeholder="Сыылка на картинку" name="input-card_link"
+            class="popup__input-text popup__input-text_link">
+          <button type="submit" class="popup__input-btn popup__input-btn_type-card">
             Сохранить
           </button>
         </form>
       </div>
     </section>
 
-    <section class="img-popup">
-      <div class="img-popup__container">
-        <button type="button" class="img-popup__close"></button>
-        <img class="img-popup__fullpic" src="#" alt="#">
-        <h3 class="img-popup__title">Тестовое название</h3>
+    <section class="popup popup_type-image">
+      <div class="popup__container popup__container_type-image">
+        <button type="button" class="popup__close popup__close_type-image"></button>
+        <img class="popup__fullpic" src="#" alt="#">
+        <h3 class="popup__title popup__title_type-image">Тестовое название</h3>
       </div>
     </section>
 

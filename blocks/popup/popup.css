@@ -4,13 +4,18 @@
 @import url("./__input-form/popup__input-form.css");
 @import url("./__input-text/popup__input-text.css");
 @import url("./__input-btn/popup__input-btn.css");
-@import url("./__error/popup__error.css");
+@import url("./__fullpic/popup__fullpic.css");
 
 .popup {
   display: flex; 
   visibility: hidden;
   height: 100%;
-  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 99999;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -19,11 +24,7 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, .5);
-  box-sizing: border-box;
-  overflow: hidden;
-  z-index: -5;
-  opacity: 0;
-  transition: visibility 1s, opacity 1s ease;
+  transition: opacity 1s 1s;
 }
 
 .popup::before {
