@@ -85,7 +85,6 @@ function removeCard(cardElement) {
   cardElement.remove();
 }
 
-
 initialCards.forEach(appendCard);
 
 function openPopup(popup) {
@@ -99,6 +98,14 @@ function closePopup(popup) {
 function handleEventPopupCloseOnOverspace(popup) {
   return function (event) {
     if (event.target === event.currentTarget) {
+      closePopup(popup);
+    }
+  }
+}
+
+function handleEventPopupCloseByEscape(popup) {
+  return function (event) {
+    if (event.key == 'Escape') {
       closePopup(popup);
     }
   }
@@ -137,7 +144,7 @@ formProfile.addEventListener("submit", event => {
 formProfile.addEventListener("keydown", event => {
   if (event.key == 'Enter') {
     event.preventDefault();
-    popupSaveNewData();
+    savePopupProfileChanges();
   }
 });
 
@@ -161,6 +168,13 @@ cardPopupCloseButton.addEventListener('click', () => {
 cardPopup.addEventListener('submit', event => {
   event.preventDefault();
   savePopupCardElement();
+});
+
+cardPopup.addEventListener('keydown', event => {
+  if (event.key == 'Enter') {
+    event.preventDefault();
+    savePopupCardElement();
+  }
 });
 
 imgPopupCloseBtn.addEventListener('click', () => {

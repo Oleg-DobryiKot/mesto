@@ -75,9 +75,9 @@ const enableValidation = (config) => {
 
 // инициализация конфигураций для разных попапов
 enableValidation({
-  formSelector: '.popup__input-form',
+  formSelector: '.popup__input-form_type-profile',
   inputSelector: '.popup__input-text',
-  submitButtonSelector: '.popup__input-btn',
+  submitButtonSelector: '.popup__input-btn_type-profile',
   inactiveButtonClass: 'popup__input-btn_disabled',
   inputErrorClass: 'popup__input-text_type_error',
   errorSelector: '.popup__error',
@@ -85,11 +85,11 @@ enableValidation({
 });
 
 enableValidation({
-  formSelector: '.card-popup__input-form',
-  inputSelector: '.card-popup__input-text',
-  submitButtonSelector: '.card-popup__input-btn',
-  inactiveButtonClass: 'card-popup__input-btn_disabled',
-  inputErrorClass: 'card-popup__input-text_type_error',
-  errorSelector: '.card-popup__error',
-  errorClass: 'card-popup__error_visible'
+  formSelector: '.popup__input-form_type-card',
+  inputSelector: '.popup__input-text',
+  submitButtonSelector: 'popup__input-btn_type-card',
+  inactiveButtonClass: 'popup__input-btn_disabled',
+  inputErrorClass: 'popup__input-text_type_error',
+  errorSelector: '.popup__error',
+  errorClass: 'popup__error_visible'
 });
