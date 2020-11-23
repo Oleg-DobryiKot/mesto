@@ -13,8 +13,6 @@ const cardPopupCloseButton = document.querySelector('.popup__close_type-card');
 const cardInputName = document.querySelector('.popup__input-text_title');
 const cardInputLink = document.querySelector('.popup__input-text_link');
 
-//console.log(cardPopup);
-
 // попап всплывающей картинки -- определения 
 const imgPopupCloseBtn = document.querySelector('.popup__close_type-image')
 const imgPictureLoad = document.querySelector('.popup__fullpic');
