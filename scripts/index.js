@@ -34,7 +34,7 @@ const elementsContainer = document.querySelector('.elements');
 const elemCardContainer = document.querySelector('#elem__container').content;
 
 function createCard(elementModel) {
-  const element = elemCardContainer.cloneNode(true);
+  const element = elemCardContainer.cloneNode(true).querySelector('.element');
   const elementImage = element.querySelector('.element__image');
   const elementName = element.querySelector('.element__title');
   if (elementModel.link) {
@@ -44,15 +44,33 @@ function createCard(elementModel) {
   if (elementModel.name) {
     elementName.textContent = elementModel.name;
   }
-  element.querySelector('.element__like-icon').addEventListener('click', function (event) {
-    event.target.classList.toggle('element__like-icon_active');
+  element.addEventListener('click', function (event) {
+    // console.log(event.target);
+    // console.log(event.currentTarget);
+    if (event.target.classList.contains('element__like-icon')) {
+      toggleLikeIcon(event.target);
+      return;
+    }
+    if (event.target.classList.contains('element__trash-icon')) {
+      removeCard(event.currentTarget);
+      return;
+    }
+    if (event.target.classList.contains('element__image')) {
+      loadPopupImage(event.target);
+      openPopup(imgPopup);
+      return;
+    }
   });
   return element;
 }
 
-function appendCard(elementModel) {
-  const element = createCard(elementModel);
-  elementsContainer.append(element);
+function loadPopupImage(imageElement) {
+  imgPictureLoad.src = imageElement.attributes.src.value;
+  imgTitleLoad.textContent = imageElement.attributes.alt.value;
+}
+
+function toggleLikeIcon(iconElement) {
+  iconElement.classList.toggle('element__like-icon_active');
 }
 
 function prependCard(elementModel) {
@@ -60,21 +78,17 @@ function prependCard(elementModel) {
   elementsContainer.prepend(element);
 }
 
-initialCards.forEach(appendCard);
+function appendCard(elementModel) {
+  const element = createCard(elementModel);
+  elementsContainer.append(element);
+}
 
-// эту функцию улучшу позже, не совсем понял 
-// что имелось ввиду про делегирование
-// скорее всего к сдаче 6-й работы 
-elementsContainer.addEventListener('click', (event) => {
-  if (event.target.classList.contains('element__trash-icon')) {
-    const element = event.target.closest('.element');
-    element.remove();
-  } else if (event.target.classList.contains('element__image')) {
-    imgPictureLoad.src = event.target.attributes.src.value;
-    imgTitleLoad.textContent = event.target.attributes.alt.value;
-    openPopup(imgPopup);
-  }
-});
+function removeCard(cardElement) {
+  cardElement.remove();
+}
+
+
+initialCards.forEach(appendCard);
 
 function openPopup(popup) {
   popup.classList.add('popup_is-opened');
