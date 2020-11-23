@@ -174,6 +174,8 @@ document.addEventListener('keydown', handleEventPopupCloseByEscape(profilePopup)
 cardPopup.addEventListener('click', handleEventPopupCloseOnOverspace(cardPopup));
 document.addEventListener('keydown', handleEventPopupCloseByEscape(cardPopup));
 
+document.addEventListener('keydown', handleEventPopupCloseByEscape(imgPopup));
+
 cardAddButton.addEventListener('click', () => {
   cardInputLink.value = '';
   cardInputName.value = '';
