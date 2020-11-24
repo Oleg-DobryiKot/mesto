@@ -1,5 +1,5 @@
 const showInputError = (formElement, inputElement, errorMessage, config) => {
-  const errorElement = formElement.querySelector(`${config.errorSelector}${inputElement.name}`); 
+  const errorElement = formElement.querySelector(`${config.errorSelector}${inputElement.name}`);
   inputElement.classList.add(config.inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(config.errorClass);
@@ -9,7 +9,6 @@ const hideInputError = (formElement, inputElement, config) => {
   const errorElement = formElement.querySelector(`${config.errorSelector}${inputElement.name}`);
   inputElement.classList.remove(config.inputErrorClass);
   errorElement.classList.remove(config.errorClass);
-  // errorElement.textContent = '';
 };
 
 const checkInputValidity = (formElement, inputElement, config) => {
@@ -45,7 +44,6 @@ const setEventListeners = (formElement, config) => {
 };
 
 const enableValidation = (config) => {
-  //  debugger
   const forms = document.querySelectorAll(config.formSelector);
   forms.forEach((formElement) => {
     formElement.addEventListener('submit', function (event) {
@@ -55,22 +53,11 @@ const enableValidation = (config) => {
   });
 };
 
-// инициализация конфигураций для разных попапов
+// инициализация конфигурации для всех попапов ввода сразу.
 enableValidation({
-  formSelector: '.popup__input-form_type-profile',
+  formSelector: '.popup__input-form',
   inputSelector: '.popup__input-text',
-  submitButtonSelector: '.popup__input-btn_type-profile',
-  // inactiveButtonClass: 'popup__input-btn_disabled',
-  inputErrorClass: 'popup__input-text_type_error',
-  errorSelector: '.popup__error',
-  errorClass: 'popup__error_visible'
-});
-
-enableValidation({
-  formSelector: '.popup__input-form_type-card',
-  inputSelector: '.popup__input-text',
-  submitButtonSelector: '.popup__input-btn_type-card',
-  // inactiveButtonClass: 'popup__input-btn_disabled',
+  submitButtonSelector: '.popup__input-btn',
   inputErrorClass: 'popup__input-text_type_error',
   errorSelector: '.popup__error',
   errorClass: 'popup__error_visible'
