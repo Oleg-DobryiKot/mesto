@@ -87,13 +87,11 @@ initialCards.forEach(appendCard);
 function openPopup(popup) {
   popup.classList.add('popup_is-opened');
   document.addEventListener("keydown", closeByEscape);
-  popupCloseButton.addEventListener('click', handleClosePopup(popup));
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_is-opened');
   document.removeEventListener("keydown", closeByEscape);
-  popupCloseButton.removeEventListener('click', handleClosePopup(popup));
 }
 
 function handleClosePopup(popup) {
