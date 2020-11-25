@@ -87,6 +87,13 @@ initialCards.forEach(appendCard);
 function openPopup(popup) {
   popup.classList.add('popup_is-opened');
   document.addEventListener("keydown", closeByEscape);
+
+  function closeCurrentPopup() {
+    handleClosePopup(popup);
+    popupCloseButton.removeEventListener('click', closeCurrentPopup);
+  };
+
+  popupCloseButton.addEventListener('click', closeCurrentPopup); 
 }
 
 function closePopup(popup) {
