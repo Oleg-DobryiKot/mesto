@@ -66,12 +66,12 @@ class FormValidator {
 //   }
 
 //   activateButton() {
-//     this._buttonElement.classList.remove(this._settings.inactiveButtonClass);
+//     this._buttonElement.classList.remove(this._config.inactiveButtonClass);
 //     this._buttonElement.disabled = false;
 //   }
 
 //   deactivateButton() {
-//     this._buttonElement.classList.add('button_inactive');
+//     this._buttonElement.classList.add(this._config.inactiveButtonClass);
 //     this._buttonElement.disabled = true;
 //   }
 };
