@@ -58,7 +58,10 @@ class FormValidator {
     });
     this._setEventListeners();
   };
-    
+
+//возможно нужно будет воспользоваться, если верну в конфиг inactiveButtonClass
+// и разделю кнопки сабмита как и было.
+  
 //   disableInputError() {
 //     this._inputList.forEach(inputElement => {
 //       this._hideInputError(inputElement);

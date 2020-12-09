@@ -1,3 +1,45 @@
+
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
+// перекинуть бы все определяшки в какой-нить инишиал.жис как в тренажере.
+
+// карточки из кардс чтоб три файла как в задании.
+const initialCards = [{
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+const initValidationConfig = {
+  formSelector: '.popup__input-form',
+  inputSelector: '.popup__input-text',
+  submitButtonSelector: '.popup__input-btn',
+  inputErrorClass: 'popup__input-text_type_error',
+  errorSelector: '.popup__error',
+  errorClass: 'popup__error_visible'
+};
+
 // попап редактирования профиля -- определения
 const profilePopup = document.querySelector('.popup_type-profile');
 const cardPopup = document.querySelector('.popup_type-card');
@@ -41,6 +83,7 @@ function createCard(elementModel) {
   if (elementModel.name) {
     elementName.textContent = elementModel.name;
   }
+  //запишу в _setEventListeners()
   element.addEventListener('click', function (event) {
     if (event.target.classList.contains('element__like-icon')) {
       toggleLikeIcon(event.target);
@@ -55,8 +98,9 @@ function createCard(elementModel) {
       return;
     }
   });
+  //конец слушателей. 
   return element;
-}
+} // почти перенес в кард
 
 function openPopupImage(imageElement) {
   imgPictureLoad.src = imageElement.link
@@ -66,7 +110,7 @@ function openPopupImage(imageElement) {
 
 function toggleLikeIcon(iconElement) {
   iconElement.classList.toggle('element__like-icon_active');
-}
+} // перенес в кард
 
 function prependCard(elementModel) {
   const element = createCard(elementModel);
@@ -163,3 +207,10 @@ cardPopup.addEventListener('submit', event => {
   event.preventDefault();
   savePopupCardElement();
 });
+
+//валидация
+const profilePopupValidator = new FormValidator(initValidationConfig, profilePopup);
+const cardPopupValidator = new FormValidator(initValidationConfig, cardPopup);
+
+profilePopupValidator.enableValidation();
+cardPopupValidator.enableValidation();
