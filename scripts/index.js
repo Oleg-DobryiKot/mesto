@@ -72,61 +72,80 @@ const formProfile = document.forms.inputFormProfile;
 const elementsContainer = document.querySelector('.elements');
 const cardTemplate = document.querySelector('#cardTemplate').content;
 
-function createCard(elementModel) {
-  const element = cardTemplate.cloneNode(true).querySelector('.element');
-  const elementImage = element.querySelector('.element__image');
-  const elementName = element.querySelector('.element__title');
-  if (elementModel.link) {
-    elementImage.src = elementModel.link;
-    elementImage.alt = elementModel.name;
-  }
-  if (elementModel.name) {
-    elementName.textContent = elementModel.name;
-  }
+// function createCard(elementModel) {
+//   const element = cardTemplate.cloneNode(true).querySelector('.element');
+//   const elementImage = element.querySelector('.element__image');
+//   const elementName = element.querySelector('.element__title');
+//   if (elementModel.link) {
+//     elementImage.src = elementModel.link;
+//     elementImage.alt = elementModel.name;
+//   }
+//   if (elementModel.name) {
+//     elementName.textContent = elementModel.name;
+//   }
   //запишу в _setEventListeners()
-  element.addEventListener('click', function (event) {
-    if (event.target.classList.contains('element__like-icon')) {
-      toggleLikeIcon(event.target);
-      return;
-    }
-    if (event.target.classList.contains('element__trash-icon')) {
-      removeCard(event.currentTarget);
-      return;
-    }
-    if (event.target.classList.contains('element__image')) {
-      openPopupImage(elementModel);
-      return;
-    }
-  });
-  //конец слушателей. 
-  return element;
-} // почти перенес в кард
+//   element.addEventListener('click', function (event) {
+//     if (event.target.classList.contains('element__like-icon')) {
+//       toggleLikeIcon(event.target);
+//       return;
+//     }
+//     if (event.target.classList.contains('element__trash-icon')) {
+//       removeCard(event.currentTarget);
+//       return;
+//     }
+//     if (event.target.classList.contains('element__image')) {
+//       openPopupImage(elementModel);
+//       return;
+//     }
+//   });
+//   //конец слушателей. 
+//   return element;
+// } // почти перенес в кард
 
-function openPopupImage(imageElement) {
-  imgPictureLoad.src = imageElement.link
-  imgTitleLoad.textContent = imageElement.name
+function openPopupImage(cardElement) {
+  imgPictureLoad.src = cardElement.link
+  imgTitleLoad.textContent = cardElement.name
   openPopup(imgPopup);
 }
 
-function toggleLikeIcon(iconElement) {
-  iconElement.classList.toggle('element__like-icon_active');
-} // перенес в кард
+// function toggleLikeIcon(iconElement) {
+//   iconElement.classList.toggle('element__like-icon_active');
+// } // перенес в кард
 
 function prependCard(elementModel) {
   const element = createCard(elementModel);
   elementsContainer.prepend(element);
 }
 
-function appendCard(elementModel) {
-  const element = createCard(elementModel);
-  elementsContainer.append(element);
+// function appendCard(elementModel) {
+//   const element = createCard(elementModel);
+//   elementsContainer.append(element);
+// }
+
+// function removeCard(cardElement) {
+//   cardElement.remove();
+// }
+
+function handleCardImageClick(card) {
+  //console.log(card);
+  card.onImageClick(event => {
+    openPopupImage(card.getData());
+  });
+
 }
 
-function removeCard(cardElement) {
-  cardElement.remove();
-}
+const renderCards = () => {
+  initialCards.forEach((item) => {
+    const card = new Card(item, cardTemplate);
+    const cardElement = card.createCard();
+    handleCardImageClick(card);
+    elementsContainer.append(cardElement);
+  });
+};
 
-initialCards.forEach(appendCard);
+renderCards();
+
+//initialCards.forEach(appendCard);
 
 function openPopup(popup) {
   popup.classList.add('popup_is-opened');

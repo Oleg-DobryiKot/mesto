@@ -7,7 +7,7 @@ class FormValidator {
   _showInputError(inputElement) {
     this._errorElement = this._formElement.querySelector(`${this._config.errorSelector}${inputElement.name}`);
     inputElement.classList.add(this._config.inputErrorClass);
-    this._errorElement.textContent = inputElement.errorMessage;
+    this._errorElement.textContent = inputElement.validationMessage;
     this._errorElement.classList.add(this._config.errorClass);
   }
 
@@ -33,7 +33,7 @@ class FormValidator {
   }
 
   _toggleButtonState() {
-    this._buttonElement.disabled = _hasInvalidInput(this._inputList);
+    this._buttonElement.disabled = this._hasInvalidInput();
   }
   
   _setEventListeners() {

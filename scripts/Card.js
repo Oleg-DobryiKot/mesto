@@ -1,25 +1,40 @@
 class Card {
-  constructor(cardData, cardTemplateSelector) {
-    this._cardTemplateSelector = cardTemplateSelector;
-    this._name = cardData.name;
-    this._link = cardData.link;
+	constructor(cardData, cardTemplate) {
+		// debugger;
+	  this._cardTemplateNode = cardTemplate;
+    // this._name = cardData.name;
+    // this._link = cardData.link;
 	this._data = cardData;
+		
   }
 
   _getCardTemplate() {
-	const cardElement = this._cardTempateSelector
+	const cardElement = this._cardTemplateNode
 	  .cloneNode(true)
-      .querySelector('.element');
+		  .querySelector('.element');
 
     return cardElement;
   }
 
+	getData() {
+		return this._data;
+	  }
+	  
+	onImageClick(callback) {
+		this._cardElementImage.addEventListener('click', callback);
+	}
+
   createCard() {
-    this._element = this._getCardTemplate();
-    this._setEventListeners();
-    this._elementImage.src = this._link;
-    this._elementImage.alt = this._name;
-    this._element.querySelector('.element__title').textContent = this._name;
+	  this._element = this._getCardTemplate();
+	  this._cardElementImage = this._element.querySelector('.element__image');
+	   this._cardDeleteIcon = this._element.querySelector('.element__trash-icon');
+	  this._cardLikeIcon = this._element.querySelector('.element__like-icon');
+	  
+	  this._setEventListeners();
+	  
+    this._cardElementImage.src = this._data.link;
+    this._cardElementImage.alt = this._data.name;
+    this._element.querySelector('.element__title').textContent = this._data.name;
 
     return this._element;
   }
@@ -33,16 +48,12 @@ class Card {
   }
 
   _setEventListeners() {
-    this._cardDeleteIcon = this._element.querySelector('.element__trash-icon');
-    this._cardLikeIcon = this._element.querySelector('.element__like-icon');
-    this._cardElementImage = this._element.querySelector('.element__image');
-
     this._cardLikeIcon.addEventListener('click', () => {this._toggleLikeIcon()});
-
     this._cardDeleteIcon.addEventListener('click', () => {this._deleteCard()});
 
-    // this._elementImage.addEventListener('click', () => {
-    //   this._handleImageClick(this._name, this._link)
+	//   this._cardElementImage.addEventListener('click', () => {
+	// 	  openPopupImage(this._data);
+    //   // this._handleImageClick(this._name, this._link)
     //});
   }
 }
