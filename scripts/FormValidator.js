@@ -3,7 +3,7 @@ class FormValidator {
     this._formElement = formElement;
     this._config = config;
   }
-   //приватные методы класса 
+  //приватные методы класса 
   _showInputError(inputElement) {
     this._errorElement = this._formElement.querySelector(`${this._config.errorSelector}${inputElement.name}`);
     inputElement.classList.add(this._config.inputErrorClass);
@@ -23,7 +23,7 @@ class FormValidator {
       return !inputElement.validity.valid;
     });
   }
-    
+
   _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement);
@@ -35,7 +35,7 @@ class FormValidator {
   _toggleButtonState() {
     this._buttonElement.disabled = this._hasInvalidInput();
   }
-  
+
   _setEventListeners() {
     this._inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
     this._buttonElement = this._formElement.querySelector(this._config.submitButtonSelector);
@@ -47,36 +47,15 @@ class FormValidator {
         this._checkInputValidity(inputElement);
         this._toggleButtonState();
       });
-    });    
+    });
   }
 
   enableValidation() {
-//   this._forms = document.querySelectorAll(this._config.formSelector);
-//   this._forms.forEach((this._formElement) => {
     this._formElement.addEventListener('submit', (event) => {
       event.preventDefault();
     });
     this._setEventListeners();
   };
-
-//возможно нужно будет воспользоваться, если верну в конфиг inactiveButtonClass
-// и разделю кнопки сабмита как и было.
-  
-//   disableInputError() {
-//     this._inputList.forEach(inputElement => {
-//       this._hideInputError(inputElement);
-//     })
-//   }
-
-//   activateButton() {
-//     this._buttonElement.classList.remove(this._config.inactiveButtonClass);
-//     this._buttonElement.disabled = false;
-//   }
-
-//   deactivateButton() {
-//     this._buttonElement.classList.add(this._config.inactiveButtonClass);
-//     this._buttonElement.disabled = true;
-//   }
 };
 
 export default FormValidator;

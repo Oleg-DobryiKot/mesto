@@ -1,37 +1,33 @@
 class Card {
-	constructor(cardData, cardTemplate) {
-		// debugger;
-	  this._cardTemplateNode = cardTemplate;
-    // this._name = cardData.name;
-    // this._link = cardData.link;
-	this._data = cardData;
-		
+  constructor(cardData, cardTemplate) {
+    this._cardTemplateNode = cardTemplate;
+    this._data = cardData;
   }
 
   _getCardTemplate() {
-	const cardElement = this._cardTemplateNode
-	  .cloneNode(true)
-		  .querySelector('.element');
+    const cardElement = this._cardTemplateNode
+      .cloneNode(true)
+      .querySelector('.element');
 
     return cardElement;
   }
 
-	getData() {
-		return this._data;
-	  }
-	  
-	onImageClick(callback) {
-		this._cardElementImage.addEventListener('click', callback);
-	}
+  getData() {
+    return this._data;
+  }
+
+  onImageClick(callback) {
+    this._cardElementImage.addEventListener('click', callback);
+  }
 
   createCard() {
-	  this._element = this._getCardTemplate();
-	  this._cardElementImage = this._element.querySelector('.element__image');
-	   this._cardDeleteIcon = this._element.querySelector('.element__trash-icon');
-	  this._cardLikeIcon = this._element.querySelector('.element__like-icon');
-	  
-	  this._setEventListeners();
-	  
+    this._element = this._getCardTemplate();
+    this._cardElementImage = this._element.querySelector('.element__image');
+    this._cardDeleteIcon = this._element.querySelector('.element__trash-icon');
+    this._cardLikeIcon = this._element.querySelector('.element__like-icon');
+
+    this._setEventListeners();
+
     this._cardElementImage.src = this._data.link;
     this._cardElementImage.alt = this._data.name;
     this._element.querySelector('.element__title').textContent = this._data.name;
@@ -40,21 +36,20 @@ class Card {
   }
 
   _toggleLikeIcon() {
-	  this._cardLikeIcon.classList.toggle('element__like-icon_active');
+    this._cardLikeIcon.classList.toggle('element__like-icon_active');
   }
 
   _deleteCard() {
-	  this._element.remove();	  
+    this._element.remove();
   }
 
   _setEventListeners() {
-    this._cardLikeIcon.addEventListener('click', () => {this._toggleLikeIcon()});
-    this._cardDeleteIcon.addEventListener('click', () => {this._deleteCard()});
-
-	//   this._cardElementImage.addEventListener('click', () => {
-	// 	  openPopupImage(this._data);
-    //   // this._handleImageClick(this._name, this._link)
-    //});
+    this._cardLikeIcon.addEventListener('click', () => {
+      this._toggleLikeIcon()
+    });
+    this._cardDeleteIcon.addEventListener('click', () => {
+      this._deleteCard()
+    });
   }
 }
 
