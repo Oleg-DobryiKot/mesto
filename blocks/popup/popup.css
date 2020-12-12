@@ -8,13 +8,11 @@
 @import url("./__error/popup__error.css");
 
 .popup {
-  display: flex; 
+  display: flex;
   visibility: hidden;
   height: 100%;
   top: 0;
   left: 0;
-  display: flex;
-  visibility: hidden;
   opacity: 0;
   z-index: 99999;
   justify-content: center;
