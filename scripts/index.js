@@ -78,8 +78,9 @@ function openPopupImage(cardElement) {
 }
 
 function prependCard(elementModel) {
-  const element = createCard(elementModel);
-  elementsContainer.prepend(element);
+  const card = new Card(elementModel, cardTemplate);
+  const cardElement = card.createCard();
+  elementsContainer.prepend(cardElement);
 }
 
 function handleCardImageClick(card) {
