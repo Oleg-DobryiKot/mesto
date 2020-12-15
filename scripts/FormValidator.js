@@ -36,6 +36,11 @@ class FormValidator {
     this._buttonElement.disabled = this._hasInvalidInput();
   }
 
+  _deactivateButton() {
+		this._buttonElement.classList.add('popup__input-btn_disabled');
+		this._buttonElement.disabled = true;
+	}
+
   _setEventListeners() {
     this._inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
     this._buttonElement = this._formElement.querySelector(this._config.submitButtonSelector);
@@ -53,6 +58,7 @@ class FormValidator {
   enableValidation() {
     this._formElement.addEventListener('submit', (event) => {
       event.preventDefault();
+      this._deactivateButton();
     });
     this._setEventListeners();
   };
