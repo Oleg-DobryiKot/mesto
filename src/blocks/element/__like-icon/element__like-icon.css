@@ -7,8 +7,10 @@
   background-size: 100%;
   cursor: pointer;
   right: 10px;
+
   /* position: absolute;
   right: 10px; */
+
   /* opacity: 0.5; */
   transition: 0.3s;
 }

@@ -10,6 +10,7 @@
 @import url("../blocks/element/element.css");
 @import url("../blocks/element/__like-icon/_active/element__like-icon_active.css");
 @import url("../blocks/footer/footer.css");
+
 /* попап профиля */
 @import url("../blocks/popup/popup.css");
 @import url("../blocks/popup/__input-text/_description/popup__input-text_description.css");
@@ -21,13 +22,16 @@
 @import url("../blocks/popup/__input-btn/_type-card/popup__input-btn_type-card.css");
 @import url("../blocks/popup/__input-btn/_disabled/popup__input-btn_disabled.css");
 @import url("../blocks/popup/__input-text/_type_error/popup__input-text_type_error.css");
+
 /* попап карточки */
 @import url("../blocks/popup/_type-card/popup_type-card.css");
 @import url("../blocks/popup/__input-text/_link/popup__input-text_link.css");
 @import url("../blocks/popup/__input-text/_title/popup__input-text_title.css");
+
 /* попап развернутой картинки */
 @import url("../blocks/popup/_type-image/popup_type-image.css");
 @import url("../blocks/popup/__container/_type-image/popup__container_type-image.css");
 @import url("../blocks/popup/__title/_type-image/popup__title_type-image.css");
+
 /* скрытие попапов */
 @import url("../blocks/popup/_is-opened/popup_is-opened.css");

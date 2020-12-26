@@ -1,7 +1,8 @@
 .element__trash-icon {
   width: 18px;
   height: 19.5px;
-  /*margin-right: 31px;*/
+
+  /* margin-right: 31px; */
   border: none;
   background: url("../../../images/white-trash.svg") center no-repeat;
   background-size: 100%;
