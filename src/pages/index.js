@@ -1,7 +1,7 @@
 import './index.css';
 
-import Card from '../scripts/Card.js';
-import FormValidator from '../scripts/FormValidator.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
 import {
   initialCards,
   initValidationConfig,
@@ -22,7 +22,7 @@ import {
   formProfile,
   elementsContainer,
   cardTemplate,
-} from '../scripts/constants.js';
+} from '../utils/constants.js';
 
 function openPopupImage(cardElement) {
   imgPictureLoad.src = cardElement.link;
