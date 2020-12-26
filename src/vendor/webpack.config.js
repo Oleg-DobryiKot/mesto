@@ -38,6 +38,8 @@ module.exports = {
       {
     // применять это правило только к CSS-файлам
       test: /\.css$/,
+    // при обработке этих файлов нужно использовать
+    // MiniCssExtractPlugin.loader и css-loader
       use: [MiniCssExtractPlugin.loader, {
         loader: 'css-loader',
         options: { importLoaders: 1 }
@@ -49,7 +51,9 @@ module.exports = {
   },
 
   plugins: [
-    new HtmlWebpackPlugin({template: './src/index.html'}),
+    new HtmlWebpackPlugin({
+    template: './src/index.html' // путь к файлу index.html
+    }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin()
   ] 

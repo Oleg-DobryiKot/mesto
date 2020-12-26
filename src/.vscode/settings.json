@@ -1,0 +1,5 @@
+{
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "json.maxItemsComputed": 25000
+}
