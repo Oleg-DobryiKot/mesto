@@ -47,7 +47,8 @@ export const cardInputName = document.querySelector('.popup__input-text_title');
 export const cardInputLink = document.querySelector('.popup__input-text_link');
 //const cardSaveButton = document.querySelector('.popup__input-btn_type-card');
 
-// попап всплывающей картинки -- определения 
+// попап всплывающей картинки -- определения , уже можно убрать. 
+// либо заремить и потом передавать в попап как селекторы, чтоб не привязывать жестко.
 export const imgPictureLoad = document.querySelector('.popup__fullpic');
 export const imgTitleLoad = document.querySelector('.popup__title_type-image');
 

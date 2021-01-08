@@ -1,7 +1,8 @@
 class Card {
-  constructor(cardData, cardTemplate) {
+  constructor({cardData, handleCardClick}, cardTemplate) {
     this._cardTemplateNode = cardTemplate;
     this._data = cardData;
+    this._handleCardClick = handleCardClick;
   }
 
   _getCardTemplate() {
@@ -12,13 +13,13 @@ class Card {
     return cardElement;
   }
 
-  getData() {
-    return this._data;
-  }
+  // getData() {
+  //   return this._data;
+  // }
 
-  onImageClick(callback) {
-    this._cardElementImage.addEventListener('click', callback);
-  }
+  // onImageClick(callback) {
+  //   this._cardElementImage.addEventListener('click', callback);
+  // }
 
   createCard() {
     this._element = this._getCardTemplate();
@@ -51,6 +52,9 @@ class Card {
     this._cardDeleteIcon.addEventListener('click', () => {
       this._deleteCard()
     });
+    this._cardElementImage.addEventListener('click', () => {
+			this._handleCardClick(this._data)
+		});
   }
 }
 
