@@ -1,24 +1,30 @@
 class UserInfo {
   constructor({
-    userName,
-    userDescription
+    userNameInputElement,
+    userDescriptionInputElement,
+    userNameElement,
+    userDescriptionElement
   }) {
-    this._userName = userName;
-    this._userDescription = userDescription;
+    this._userNameInputElement = userNameInputElement;
+    this._userDescriptionInputElement = userDescriptionInputElement;
+    this._userNameElement = userNameElement;
+    this._userDescriptionElement = userDescriptionElement;
   }
 
   getUserInfo() {
     const userInformation = {
-      name: this._userName.textContent,
-      description: this._userDescription.textContent,
+      name: this._userNameInputElement.textContent,
+      description: this._userDescriptionInputElement.textContent,
     };
 
     return userInformation;
   }
 
   setUserInfo(name, description) {
-    this._userName.textContent = name;
-    this._userDescription.textContent = description;
+    this._userNameInputElement.value = name;
+    this._userDescriptionInputElement.value = description;
+    this._userNameElement.textContent = name;
+    this._userDescriptionElement.textContent = description;
   }
 };
 

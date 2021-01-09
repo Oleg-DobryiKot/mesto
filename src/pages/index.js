@@ -10,70 +10,88 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import {
   initialCards,
   initValidationConfig,
-  profilePopup,
-  cardPopup,
+  //profilePopupSelector,
+  //cardPopupSelector,
   imgPopup,
-  profileInputName,
-  profileInputDescription,
+  profileNameInputElement,
+  profileDescriptionInputElement,
   cardInputName,
   cardInputLink,
-  imgPictureLoad,  //можно убрать, выбор в классе попапа с картинкой
-  imgTitleLoad,    //тоже самое и из констант тоже можно заремить.
-  popupEditButton,
-  cardAddButton,
-  profileNewName,
-  profileNewDescription,
+  profileEditButtonElement,
+  cardAddButtonElement,
+  profileNameElement,
+  profileDescriptionElement,
   formCard,
   formProfile,
-  // elementsContainer,
+  // elementsContainerSelector,
   cardTemplate,
 } from '../utils/constants.js';
 
 // const cardTemplate = '#cardTemplate';
-const elementsContainer = '.elements';
+const elementsContainerSelector = '.elements';
+const profilePopupSelector = '.popup_type-profile';
+const cardPopupSelector = '.popup_type-card';
 
-const userProfileInfo = new UserInfo({
-	userName: profileInputName,
-	userDescription: profileInputDescription
+const profileUserInfo = new UserInfo({
+	userNameInputElement: profileNameInputElement,
+  userDescriptionInputElement: profileDescriptionInputElement,
+	userNameElement: profileNameElement,
+  userDescriptionElement: profileDescriptionElement
 });
 
-const cardImageDialog = new PopupWithImage('.popup_type-image');
+const cardPopupWithImage = new PopupWithImage('.popup_type-image');
 
-const cardImageClick = (name, link) => {
-	cardImageDialog.open(name, link);
+const cardImageClick = (cardModel) => {
+	cardPopupWithImage.open(cardModel.name, cardModel.link);
 }
 
 const createCardInstance = function (cardModel, cardTemplate) {
 	const card = new Card({
-		data: cardModel,
-		handleCardClick: (cardModel) => {
-			cardImageClick(cardModel.name, cardModel.link);
-		},
+		cardData: cardModel,
+		handleCardClick: cardImageClick,
 	}, cardTemplate);
 
 	return card;
 }
 
-const initialCardsLoad = new Section({
-	data: {},
-	renderer: (cardModel) => {
-		const card = createCardInstance(cardModel, cardTemplate);
-    const cardElement = card.createCard();
-    
-		initialCardsLoad.setItemAppend(cardElement);
-	},
-}, elementsContainer
+const initialCardsSection = new Section(
+  {
+    items: initialCards,
+    renderer: (cardModel) => {
+      const card = createCardInstance(cardModel, cardTemplate);
+      const cardElement = card.createCardElement();
+      
+      initialCardsSection.appendItem(cardElement);
+    },
+  },
+  elementsContainerSelector
 );
+ 
+initialCardsSection.addItem();
 
-initialCardsLoad.setRenderedItems(initialCards);
-initialCardsLoad.addItem();
-
-const popupEditProfile = new PopupWithForm({
-	popupSelector: profilePopup,
-	handleFormSubmit: () => {
-		userProfileInfo.setUserInfo(profileInputName.value, profileInputDescription.value);
-    popupEditProfile.close();
+const editProfilePopupWithForm = new PopupWithForm({
+	popupSelector: profilePopupSelector,
+	handleFormSubmit: (prfoileData) => {
+		profileUserInfo.setUserInfo(prfoileData.name, prfoileData.description);
+    editProfilePopupWithForm.close();
 	}
+});
+
+const addCardPopupWithForm = new PopupWithForm({
+	popupSelector: cardPopupSelector,
+	handleFormSubmit: (cardModel) => {
+		const newCard = createCardInstance(cardModel, cardTemplate);
+    initialCardsSection.prependItem(newCard.createCardElement());
+    addCardPopupWithForm.close();
+  },
+});
+
+profileEditButtonElement.addEventListener('click', () => {
+  editProfilePopupWithForm.open();
+});
+
+cardAddButtonElement.addEventListener('click', () => {
+  addCardPopupWithForm.open();
 });
 
 // function openPopupImage(cardElement) {
@@ -96,7 +114,7 @@ const popupEditProfile = new PopupWithForm({
 //   const card = createCardInstance(elementModel);
 //   const cardElement = card.createCard();
 //   // handleCardImageClick(card);
-//   elementsContainer.prepend(cardElement);
+//   elementsContainerSelector.prepend(cardElement);
 // }  // now transfered to Section.setItemPrepend(element) 
 
 // function handleCardImageClick(card) {
@@ -139,11 +157,11 @@ const popupEditProfile = new PopupWithForm({
 // }
 
 // function savePopupProfileChanges() {
-//   if (profileInputName.value !== '') {
-//     profileNewName.textContent = profileInputName.value;
-//     profileNewDescription.textContent = profileInputDescription.value;
+//   if (profileNameInputElement.value !== '') {
+//     profileNewName.textContent = profileNameInputElement.value;
+//     profileNewDescription.textContent = profileDescriptionInputElement.value;
 //   }
-//   closePopup(profilePopup);
+//   closePopup(profilePopupSelector);
 // }
 
 // function savePopupCardElement() {
@@ -154,13 +172,13 @@ const popupEditProfile = new PopupWithForm({
 //     elementModel.link = cardInputLink.value;
 //     prependCard(elementModel);
 //   }
-//   closePopup(cardPopup);
+//   closePopup(cardPopupSelector);
 // }
 
 // popupEditButton.addEventListener('click', () => {
-//   profileInputName.value = profileNewName.textContent;
-//   profileInputDescription.value = profileNewDescription.textContent;
-//   openPopup(profilePopup);
+//   profileNameInputElement.value = profileNewName.textContent;
+//   profileDescriptionInputElement.value = profileNewDescription.textContent;
+//   openPopup(profilePopupSelector);
 // });
 
 // formProfile.addEventListener("submit", event => {
@@ -170,10 +188,10 @@ const popupEditProfile = new PopupWithForm({
 
 // cardAddButton.addEventListener('click', () => {
 //   formCard.reset();
-//   openPopup(cardPopup);
+//   openPopup(cardPopupSelector);
 // });
 
-// cardPopup.addEventListener('submit', event => {
+// cardPopupSelector.addEventListener('submit', event => {
 //   event.preventDefault();
 //   savePopupCardElement();
 // });
@@ -181,11 +199,12 @@ const popupEditProfile = new PopupWithForm({
 // renderCards();
 
 //валидация
-const profilePopupValidator = new FormValidator(initValidationConfig, profilePopup);
-const cardPopupValidator = new FormValidator(initValidationConfig, cardPopup);
+const editProfileFormValidator = new FormValidator(initValidationConfig, editProfilePopupWithForm.getForm());
+const addCardFormValidator = new FormValidator(initValidationConfig, addCardPopupWithForm.getForm());
 
-profilePopupValidator.enableValidation();
-cardPopupValidator.enableValidation();
+editProfileFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
 
-cardImageDialog.setEventListeners();
-popupEditProfile.setEventListeners();
+cardPopupWithImage.setEventListeners();
+editProfilePopupWithForm.setEventListeners();
+addCardPopupWithForm.setEventListeners();

@@ -5,24 +5,27 @@ class Section {
   }, containerSelector) {
     this._renderedItems = items;
     this._renderer = renderer;
-    this._container = document.querySelector(containerSelector);
+    this._containerElement = document.querySelector(containerSelector);
   }
 
   addItem() {
-    this._renderedItems.forEach(item =>
-      this._renderer(item));
+    this._renderedItems.forEach(item => {
+      this._renderer(item);
+    });
   }
 
-  setItemAppend(element) {
-    this._container.append(element);
+  appendItem(element) {
+    this._containerElement.append(element);
   }
 
-  setItemPrepend(element) {
-    this._container.prepend(element);
+  prependItem(element) {
+    this._containerElement.prepend(element);
   }
 
-  setRenderedItems(items) {
-    this._renderedItems = items;
-  }
+  // setRenderedItems(items) {
+  //   this._renderedItems = items;
+  //   this._renderedItems.forEach(item =>
+  //     this._renderer(item));
+  // }
 };
 export default Section;

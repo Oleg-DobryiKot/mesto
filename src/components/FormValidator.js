@@ -5,14 +5,14 @@ class FormValidator {
   }
   //приватные методы класса 
   _showInputError(inputElement) {
-    this._errorElement = this._formElement.querySelector(`${this._config.errorSelector}${inputElement.name}`);
+    this._errorElement = this._formElement.querySelector(`${this._config.errorSelector}_${inputElement.name}`);
     inputElement.classList.add(this._config.inputErrorClass);
     this._errorElement.textContent = inputElement.validationMessage;
     this._errorElement.classList.add(this._config.errorClass);
   }
 
   _hideInputError(inputElement) {
-    this._errorElement = this._formElement.querySelector(`${this._config.errorSelector}${inputElement.name}`);
+    this._errorElement = this._formElement.querySelector(`${this._config.errorSelector}_${inputElement.name}`);
     inputElement.classList.remove(this._config.inputErrorClass);
     this._errorElement.classList.remove(this._config.errorClass);
     this._errorElement.textContent = '';

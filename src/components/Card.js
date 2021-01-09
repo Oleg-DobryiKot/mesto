@@ -21,7 +21,7 @@ class Card {
   //   this._cardElementImage.addEventListener('click', callback);
   // }
 
-  createCard() {
+  createCardElement() {
     this._element = this._getCardTemplate();
     this._cardElementImage = this._element.querySelector('.element__image');
     this._cardDeleteIcon = this._element.querySelector('.element__trash-icon');
