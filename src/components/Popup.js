@@ -17,7 +17,6 @@ class Popup {
 
   _handleEscClose(event) {
     if (event.key === "Escape") {
-      //const openedPopup = document.querySelector(".popup_is-opened");  
       this.close();
     }
   }
@@ -41,6 +40,3 @@ class Popup {
 };
 
 export default Popup;
-
-// нужно не забыть: публичное: открыть - есть, закрыть - есть
-//     события :  по еск - есть, оверлей - есть, крестик - есть. 

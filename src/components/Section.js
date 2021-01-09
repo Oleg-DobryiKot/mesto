@@ -21,11 +21,5 @@ class Section {
   prependItem(element) {
     this._containerElement.prepend(element);
   }
-
-  // setRenderedItems(items) {
-  //   this._renderedItems = items;
-  //   this._renderedItems.forEach(item =>
-  //     this._renderer(item));
-  // }
 };
 export default Section;

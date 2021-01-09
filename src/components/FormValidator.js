@@ -37,9 +37,9 @@ class FormValidator {
   }
 
   _deactivateButton() {
-		this._buttonElement.classList.add('popup__input-btn_disabled');
-		this._buttonElement.disabled = true;
-	}
+    this._buttonElement.classList.add('popup__input-btn_disabled');
+    this._buttonElement.disabled = true;
+  }
 
   _setEventListeners() {
     this._inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
