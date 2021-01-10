@@ -32,9 +32,7 @@ module.exports = {
         use: 'babel-loader',
         exclude: '/node_modules/'
       },
-      // добавили правило для обработки файлов
       {
-        // регулярное выражение, которое перекладывает картинки в /имиджс
         test: /\.(png|svg|jpg|gif)$/,
         type: 'asset/resource',
         generator: {
@@ -42,7 +40,6 @@ module.exports = {
         }
       },
       {
-        // регулярное выражение, которое перекладывает шрифты в папку /фонтс
         test: /\.(woff(2)?|eot|ttf|otf)$/,
         type: 'asset/resource',
         generator: {
@@ -50,7 +47,6 @@ module.exports = {
         }
       },
       {
-        // применять это правило только к CSS-файлам
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, {
             loader: 'css-loader',
