@@ -21,8 +21,6 @@ class UserInfo {
   }
 
   setUserInfo(name, description) {
-    this._userNameInputElement.value = name;
-    this._userDescriptionInputElement.value = description;
     this._userNameElement.textContent = name;
     this._userDescriptionElement.textContent = description;
   }

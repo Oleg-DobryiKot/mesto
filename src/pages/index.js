@@ -83,8 +83,8 @@ cardAddButtonElement.addEventListener('click', () => {
   addCardPopupWithForm.open();
 });
 
-const editProfileFormValidator = new FormValidator(initValidationConfig, editProfilePopupWithForm.getForm());
-const addCardFormValidator = new FormValidator(initValidationConfig, addCardPopupWithForm.getForm());
+const editProfileFormValidator = new FormValidator(initValidationConfig, editProfilePopupWithForm.popupFormElement);
+const addCardFormValidator = new FormValidator(initValidationConfig, addCardPopupWithForm.popupFormElement);
 
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
