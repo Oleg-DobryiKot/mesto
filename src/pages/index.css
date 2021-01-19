@@ -33,5 +33,8 @@
 @import url("../blocks/popup/__container/_type-image/popup__container_type-image.css");
 @import url("../blocks/popup/__title/_type-image/popup__title_type-image.css");
 
+/* попап подтверждения удаления */
+@import url("../blocks/popup/_type-delete/popup_type-delete.css");
+
 /* скрытие попапов */
 @import url("../blocks/popup/_is-opened/popup_is-opened.css");
