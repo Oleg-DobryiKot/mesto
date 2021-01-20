@@ -8,10 +8,14 @@ class Section {
     this._containerElement = document.querySelector(containerSelector);
   }
 
-  addItem() {
+  addItems(userData) {
     this._renderedItems.forEach(item => {
-      this._renderer(item);
+      this._renderer(item, userData);
     });
+  }
+
+  setResolvedItems(items) {
+    this._renderedItems = items;
   }
 
   appendItem(element) {

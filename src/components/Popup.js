@@ -13,7 +13,6 @@ class Popup {
   close() {
     this._popup.classList.remove('popup_is-opened');
     document.removeEventListener('keydown', this._handleEscClose);
-    // this._popup.removeEventListener('click', this._closePopupOnOverlay);
   }
 
   _handleEscClose(event) {

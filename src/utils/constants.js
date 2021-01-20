@@ -48,6 +48,7 @@ export const cardAddButtonElement = document.querySelector('.profile__add-btn');
 
 export const profileNameElement = document.querySelector('.profile__title');
 export const profileDescriptionElement = document.querySelector('.profile__description');
+export const profileAvatarElement = document.querySelector('.profile__avatar');
 
 export const elementsContainer = document.querySelector('.elements');
 export const cardTemplate = document.querySelector('#cardTemplate').content;
@@ -55,3 +56,6 @@ export const cardTemplate = document.querySelector('#cardTemplate').content;
 export const elementsContainerSelector = '.elements';
 export const profilePopupSelector = '.popup_type-profile';
 export const cardPopupSelector = '.popup_type-card';
+export const deletePopupSelector = '.popup_type-delete';
+export const updateAvatarPopupSelector = '.popup_type-update-avatar';
+export const popupFormButtonSelector = '.popup__input-btn';

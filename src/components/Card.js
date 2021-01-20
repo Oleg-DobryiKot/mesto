@@ -1,11 +1,17 @@
 class Card {
   constructor({
     cardData,
-    handleCardClick
+    userData,
+    handleCardClick,
+    handleLikeClick,
+    handleDeleteClick
   }, cardTemplate) {
     this._cardTemplateNode = cardTemplate;
     this._data = cardData;
+    this._userData = userData;
     this._handleCardClick = handleCardClick;
+    this._handleLikeClick = handleLikeClick;
+    this._handleDeleteClick = handleDeleteClick;
   }
 
   _getCardTemplate() {
@@ -21,7 +27,10 @@ class Card {
     this._cardElementImage = this._element.querySelector('.element__image');
     this._cardDeleteIcon = this._element.querySelector('.element__trash-icon');
     this._cardLikeIcon = this._element.querySelector('.element__like-icon');
+    this._likeCounter = this._element.querySelector('.element__like-count');
 
+    this._setDeleteIcon();
+    this.updateLikeCount(this._data);
     this._setEventListeners();
 
     this._cardElementImage.src = this._data.link;
@@ -29,6 +38,21 @@ class Card {
     this._element.querySelector('.element__title').textContent = this._data.name;
 
     return this._element;
+  }
+
+  isLiked() {
+    if (this._data.likes.some((like) => like._id === this._userData._id))
+      return true;
+    else
+      return false;
+  }
+  
+  updateLikeCount(res) {
+    this._result = res;
+		this._likeCounter.textContent = this._result.likes.length;
+		if (this.isLiked()) {
+      this._toggleLikeIcon();
+    }
   }
 
   _toggleLikeIcon() {
@@ -40,12 +64,17 @@ class Card {
     this._element = null;
   }
 
+  _setDeleteIcon() {
+    if (this._userData._id !== this._data.owner._id)
+    this._cardDeleteIcon.remove();
+  }
+
   _setEventListeners() {
     this._cardLikeIcon.addEventListener('click', () => {
-      this._toggleLikeIcon()
+      this._handleLikeClick(this._data._id)
     });
     this._cardDeleteIcon.addEventListener('click', () => {
-      this._deleteCard()
+      this._handleDeleteIconClick(this._element, this._data._id)
     });
     this._cardElementImage.addEventListener('click', () => {
       this._handleCardClick(this._data)
