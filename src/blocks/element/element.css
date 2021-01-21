@@ -4,6 +4,7 @@
 @import url("./__like-icon/element__like-icon.css");
 @import url("./__trash-icon/element__trash-icon.css");
 @import url("./__like-count/element__like-count.css");
+@import url("./__likes/element__likes.css");
 
 .element {
   display: flex;

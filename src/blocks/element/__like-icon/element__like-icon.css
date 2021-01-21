@@ -7,7 +7,9 @@
   background-size: 100%;
   cursor: pointer;
   right: 10px;
-
+  border: none;
+  background-color: unset;
+  outline: none;
   /* position: absolute;
   right: 10px; */
 
