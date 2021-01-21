@@ -20,7 +20,7 @@ class UserInfo {
       name: this._userNameInputElement.textContent,
       about: this._userDescriptionInputElement.textContent,
       avatar: this._userAvatarElement.src,
-      id: this._id
+      _id: this._id
     };
 
     return userInformation;

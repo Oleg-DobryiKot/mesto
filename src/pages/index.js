@@ -1,3 +1,8 @@
+/*
+Завершать загрузку везде по "finally"
+*/
+// debugger;
+
 import './index.css';
 
 import Card from '../components/Card.js';
@@ -26,6 +31,7 @@ import {
   deletePopupSelector,
   popupFormButtonSelector,
   profileAvatarElement,
+  profileAvatarOverlayElement,
   updateAvatarPopupSelector
 } from '../utils/constants.js';
 
@@ -99,9 +105,9 @@ Promise.all(promises)
       addCardPopupWithForm.open();
     });
     
-		profileAvatarElement.addEventListener('click', () => {
+		profileAvatarOverlayElement.addEventListener('click', () => {
       updateAvatarPopupWithForm.open();
-      updateAvatarPopupWithForm.popupFormElement.link.value = profileUserInfo.getUserInfo().avatar;
+      updateAvatarPopupWithForm.popupFormElement.avatar.value = profileUserInfo.getUserInfo().avatar;
 		});
 	})
 	.catch((err) => {
@@ -110,12 +116,7 @@ Promise.all(promises)
 
 function renderLoading(popup, isLoading) {
 	const popupFormButtonElement = document.querySelector(popup).querySelector(popupFormButtonSelector);
-
-	if (isLoading) {
-    popupFormButtonElement.value = 'Сохранение...'; } 
-  else {
-		popupFormButtonElement.value = 'Сохраненить';
-	}
+  popupFormButtonElement.textContent = isLoading ? 'Сохранение...' : 'Сохранить';
 }
 
 const profileUserInfo = new UserInfo({
@@ -125,13 +126,14 @@ const profileUserInfo = new UserInfo({
   userDescriptionElement: profileDescriptionElement,
   userAvatarElement: profileAvatarElement
 });
-
+// debugger;
 const deleteCardPopupWithConfirm = new PopupWithConfirm({
   popupSelector: deletePopupSelector,
   handleFormSubmit: ({
     cardElement,
     cardId
   }) => {
+    // debugger;
     api.deleteCard(cardId)
       .then(() => {
         cardElement.remove();
@@ -139,23 +141,25 @@ const deleteCardPopupWithConfirm = new PopupWithConfirm({
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }
 });
 
 const updateAvatarPopupWithForm = new PopupWithForm({
 	popupSelector: updateAvatarPopupSelector,
 	handleFormSubmit: (profileData) => {
-		renderLoading(updateAvatarPopupSelector, true)
+		renderLoading(updateAvatarPopupSelector, true);
 		api.editAvatar(profileData)
 			.then(data => {
 				profileUserInfo.setUserInfo(data._id, data.name, data.about, data.avatar);
         updateAvatarPopupWithForm.close();
-				renderLoading(updateAvatarPopupSelector, false);
 			})
 			.catch((err) => {
 				console.log(err)
-			});
+      })
+      .finally(() => {
+        renderLoading(updateAvatarPopupSelector, false);
+      });
 	}
 });
 
@@ -179,20 +183,23 @@ const addCardPopupWithForm = new PopupWithForm({
   popupSelector: cardPopupSelector,
   handleFormSubmit: (cardModel) => {
     renderLoading(cardPopupSelector, true);
+    // debugger;
 		api.addNewCard(cardModel)
 			.then(data => {
+        // (cardModel, userData) => {
+        //   const card = createCardInstance(cardModel, userData, cardTemplate);
+        //   initialCardsSection.appendItem(card.createCardElement());
+        // }
+        // debugger;
+        const userData = profileUserInfo.getUserInfo();
 				const newCard = createCardInstance(data, profileUserInfo.getUserInfo(), cardTemplate);
         initialCardsSection.prependItem(newCard.createCardElement());
-				cardList.setMyItem(card.generateCard());
 				addCardPopupWithForm.close();
 				renderLoading(cardPopupSelector, false);
 			})
 			.catch((err) => {
-				console.log(err)
+				console.log(err);
 			});
-    const newCard = createCardInstance(cardModel, cardTemplate);
-    initialCardsSection.prependItem(newCard.createCardElement());
-    addCardPopupWithForm.close();
   },
 });
 
@@ -208,3 +215,4 @@ cardPopupWithImage.setEventListeners();
 editProfilePopupWithForm.setEventListeners();
 addCardPopupWithForm.setEventListeners();
 updateAvatarPopupWithForm.setEventListeners();
+deleteCardPopupWithConfirm.setEventListeners();

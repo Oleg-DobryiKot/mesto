@@ -4,11 +4,12 @@
   border-radius: 50%;
   box-sizing: border-box;
   overflow: hidden;
-  cursor: pointer;
-  position: relative;
+  object-fit: cover;
+  /* cursor: pointer;
+  position: relative; */
 }
 
-.profile__avatar:before {
+/* .profile__avatar:before {
 	content: '';
 	display: block;
 	position: absolute;
@@ -28,4 +29,4 @@
 	z-index: 5;
 	opacity: 0.8;
 	transition: opacity 0.3s ease;
-}
+} */

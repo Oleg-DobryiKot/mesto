@@ -30,7 +30,7 @@ class Api {
           'Content-Type': 'application/json'
         }
       })
-      .then((res) => {
+      .then(res => {
         if (res.ok) {
           return res.json();
         }
@@ -51,7 +51,7 @@ class Api {
           about: data.description
         })
       })
-      .then((res) => {
+      .then(res => {
         if (res.ok) {
           return res.json();
         }
@@ -61,6 +61,7 @@ class Api {
   }
 
   addNewCard(data) {
+    debugger;
     return fetch(`${this._path}/cards`, {
         method: 'POST',
         headers: {
@@ -124,6 +125,7 @@ class Api {
         },
       })
       .then((res) => {
+        
         if (res.ok) {
           return res.json();
         }

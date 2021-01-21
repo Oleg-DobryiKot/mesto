@@ -28,10 +28,16 @@ class Popup {
   }
 
   setEventListeners() {
+    this.handleCloseButtonClick();
+    this.handleOverlayClose();
+  }
+
+  handleCloseButtonClick() {
     const closeButton = this._popup.querySelector('.popup__close');
-    closeButton.addEventListener('click', () => {
-      this.close();
-    });
+    closeButton.addEventListener('click', () => this.close());
+  }
+
+  handleOverlayClose() {
     this._popup.addEventListener('click', this._closePopupOnOverlay);
   }
 };

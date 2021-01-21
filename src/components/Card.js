@@ -41,10 +41,7 @@ class Card {
   }
 
   isLiked() {
-    if (this._data.likes.some((like) => like._id === this._userData._id))
-      return true;
-    else
-      return false;
+    return this._data.likes.some(like => like._id === this._userData._id);
   }
   
   updateLikeCount(res) {
@@ -65,8 +62,10 @@ class Card {
   }
 
   _setDeleteIcon() {
-    if (this._userData._id !== this._data.owner._id)
-    this._cardDeleteIcon.remove();
+    // debugger;
+    if (this._userData._id !== this._data.owner._id) {
+      this._cardDeleteIcon.remove();
+    }
   }
 
   _setEventListeners() {
@@ -74,7 +73,7 @@ class Card {
       this._handleLikeClick(this._data._id)
     });
     this._cardDeleteIcon.addEventListener('click', () => {
-      this._handleDeleteIconClick(this._element, this._data._id)
+      this._handleDeleteClick(this._element, this._data._id)
     });
     this._cardElementImage.addEventListener('click', () => {
       this._handleCardClick(this._data)

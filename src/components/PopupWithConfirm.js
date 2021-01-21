@@ -12,6 +12,7 @@ class PopupWithConfirm extends Popup {
 
   setEventListeners() {
     this._popup.addEventListener('submit', (event) => {
+      debugger;
       event.preventDefault();
       this._handleFormSubmit(this._deleteElement);
     })

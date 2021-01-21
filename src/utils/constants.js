@@ -49,6 +49,7 @@ export const cardAddButtonElement = document.querySelector('.profile__add-btn');
 export const profileNameElement = document.querySelector('.profile__title');
 export const profileDescriptionElement = document.querySelector('.profile__description');
 export const profileAvatarElement = document.querySelector('.profile__avatar');
+export const profileAvatarOverlayElement = document.querySelector('.profile__overlay');
 
 export const elementsContainer = document.querySelector('.elements');
 export const cardTemplate = document.querySelector('#cardTemplate').content;
