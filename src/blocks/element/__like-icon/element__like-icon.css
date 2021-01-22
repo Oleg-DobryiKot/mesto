@@ -1,21 +1,15 @@
 .element__like-icon {
   width: 21px;
   height: 21px;
-  /* margin-right: 31px; */
   border: none;
   background: url("../../../images/element-like-icon.svg") center no-repeat;
   background-size: 100%;
   cursor: pointer;
   right: 10px;
-  border: none;
   background-color: unset;
   outline: none;
   align-self: center;
   margin-bottom: 3px;
-  /* position: absolute;
-  right: 10px; */
-
-  /* opacity: 0.5; */
   transition: 0.3s;
 }
 
