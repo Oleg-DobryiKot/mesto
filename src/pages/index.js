@@ -107,7 +107,7 @@ Promise.all(promises)
 		});
 	})
 	.catch((err) => {
-		console.error(err)
+		console.error(err);
 	})
 
 function renderLoading(popup, isLoading) {
@@ -150,7 +150,7 @@ const updateAvatarPopupWithForm = new PopupWithForm({
         updateAvatarPopupWithForm.close();
 			})
 			.catch((err) => {
-				console.log(err)
+				console.error(err);
       })
       .finally(() => {
         renderLoading(updateAvatarPopupSelector, false);
@@ -169,7 +169,7 @@ const editProfilePopupWithForm = new PopupWithForm({
       renderLoading(profilePopupSelector, false);
     })
     .catch((err) => {
-      console.log(err)
+      console.error(err);
     });
   }
 });
