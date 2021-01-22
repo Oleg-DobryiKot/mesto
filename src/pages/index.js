@@ -1,8 +1,3 @@
-/*
-Завершать загрузку везде по "finally"
-*/
-// debugger;
-
 import './index.css';
 
 import Card from '../components/Card.js';
@@ -47,21 +42,22 @@ const createCardInstance = function (cardModel, userData, cardTemplate) {
     userData: userData,
     handleCardClick: cardImageClick,
     handleLikeClick: (cardId) => {
+      // debugger;
       if (card.isLiked()) {
         api.unlikeCard(cardId)
           .then((res) => {
-            card.updateLikeCount(res)
+            card.updateLikeCount(res);
           })
           .catch((err) => {
-            console.log(err)
+            console.error(err);
           })
       } else {
         api.likeCard(cardId)
           .then((res) => {
-            card.updateLikeCount(res)
+            card.updateLikeCount(res);
           })
           .catch((err) => {
-            console.log(err)
+            console.error(err);
           })
       }
     },
@@ -111,7 +107,7 @@ Promise.all(promises)
 		});
 	})
 	.catch((err) => {
-		console.log(err)
+		console.error(err)
 	})
 
 function renderLoading(popup, isLoading) {
@@ -126,21 +122,20 @@ const profileUserInfo = new UserInfo({
   userDescriptionElement: profileDescriptionElement,
   userAvatarElement: profileAvatarElement
 });
-// debugger;
+
 const deleteCardPopupWithConfirm = new PopupWithConfirm({
   popupSelector: deletePopupSelector,
   handleFormSubmit: ({
     cardElement,
     cardId
   }) => {
-    // debugger;
-    api.deleteCard(cardId)
+     api.deleteCard(cardId)
       .then(() => {
         cardElement.remove();
         deleteCardPopupWithConfirm.close();
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   }
 });
@@ -183,23 +178,18 @@ const addCardPopupWithForm = new PopupWithForm({
   popupSelector: cardPopupSelector,
   handleFormSubmit: (cardModel) => {
     renderLoading(cardPopupSelector, true);
-    // debugger;
 		api.addNewCard(cardModel)
 			.then(data => {
-        // (cardModel, userData) => {
-        //   const card = createCardInstance(cardModel, userData, cardTemplate);
-        //   initialCardsSection.appendItem(card.createCardElement());
-        // }
-        // debugger;
-        const userData = profileUserInfo.getUserInfo();
 				const newCard = createCardInstance(data, profileUserInfo.getUserInfo(), cardTemplate);
         initialCardsSection.prependItem(newCard.createCardElement());
 				addCardPopupWithForm.close();
-				renderLoading(cardPopupSelector, false);
 			})
 			.catch((err) => {
 				console.log(err);
-			});
+      })
+      .finally(() => {
+        renderLoading(cardPopupSelector, false);
+      });
   },
 });
 

@@ -61,7 +61,6 @@ class Api {
   }
 
   addNewCard(data) {
-    debugger;
     return fetch(`${this._path}/cards`, {
         method: 'POST',
         headers: {
@@ -125,7 +124,6 @@ class Api {
         },
       })
       .then((res) => {
-        
         if (res.ok) {
           return res.json();
         }
@@ -153,9 +151,8 @@ class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       })
   }
-
 }
-//считать json с параметрами логина и сервера
+
 const login = {
   "server": "https://mesto.nomoreparties.co/v1/",
   "auth": "ca5f4285-decb-4fbb-b094-52f199996ef3",
