@@ -41,24 +41,18 @@ class Card {
   }
 
   isLiked() {
-    // debugger;
     return this._data.likes.some(like => like._id === this._userData._id);
   }
-  
-  updateLikeCount(res) {
-    // debugger;
-    this._data = res;
-		this._likeCounter.textContent = res.likes.length;
-		// if (!this.isLiked()) {
-      this._toggleLikeIcon();
-    // }
+
+  updateLikeCount(response) {
+    this._data = response;
+    this._likeCounter.textContent = response.likes.length;
+    this._toggleLikeIcon();
   }
 
   _toggleLikeIcon() {
-    // this._cardLikeIcon.classList.toggle('element__like-icon_active');
-    // debugger;
     if (this.isLiked()) {
-      this._cardLikeIcon.classList.add('element__like-icon_active'); 
+      this._cardLikeIcon.classList.add('element__like-icon_active');
     } else {
       this._cardLikeIcon.classList.remove('element__like-icon_active');
     }

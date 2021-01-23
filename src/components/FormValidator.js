@@ -3,7 +3,7 @@ class FormValidator {
     this._formElement = formElement;
     this._config = config;
   }
-  //приватные методы класса 
+
   _showInputError(inputElement) {
     this._errorElement = this._formElement.querySelector(`${this._config.errorSelector}_${inputElement.name}`);
     inputElement.classList.add(this._config.inputErrorClass);
@@ -62,6 +62,12 @@ class FormValidator {
     });
     this._setEventListeners();
   };
+
+  resetValidation() {
+    this._inputList.forEach(inputElement => {
+      this._hideInputError(inputElement);
+    });
+  }
 };
 
 export default FormValidator;
